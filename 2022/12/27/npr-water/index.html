@@ -25,7 +25,7 @@
 &lt;/blockquote&gt;
 &lt;h1 id=&#34;前言：&#34;&gt;&lt;a href=&#34;#前言：&#34; class=&#34;headerlink&#34; title=&#34;前言：&#34;&gt;&lt;/a&gt;前言：&lt;/h1&gt;&lt;p&gt;做这玩意的动机，主要是公司有这样的需求，又没找着合适改造的轮子，遂自己开发，也是一种学习。&lt;/p&gt;
 &lt;p&gt;性能上的要求是移动端能跑（米10为基准），那固然不能用真实感的ssr算法，得用一些hack来简化算法。至于能从哪些方面对算法进行简化，那不妨先观察一下，真实世界的水体：&lt;/p&gt;" />
-    <meta property="og:url" content="https://gaplegth.github.io/2023/01/27/npr-water/index.html" />
+    <meta property="og:url" content="https://gaplegth.github.io/2022/12/27/npr-water/index.html" />
     <meta property="og:site_name" content="" />
     <meta property="article:author" content="JoonYu" />
     <meta property="article:publisher" content="" />
@@ -49,7 +49,7 @@
 &lt;p&gt;性能上的要求是移动端能跑（米10为基准），那固然不能用真实感的ssr算法，得用一些hack来简化算法。至于能从哪些方面对算法进行简化，那不妨先观察一下，真实世界的水体：&lt;/p&gt;",
             "author": { "@type": "Person", "name": "JoonYu" },
             "@type": "BlogPosting",
-            "url": "https://gaplegth.github.io/2023/01/27/npr-water/index.html",
+            "url": "https://gaplegth.github.io/2022/12/27/npr-water/index.html",
             "publisher": {
             "@type": "Organization",
             "logo": {
@@ -59,10 +59,10 @@
             "name": "JoonYu"
             },
             "headline": "移动端风格化SSR水体 | Joon Portfolio",
-            "datePublished": "2023-01-27T15:23:31.000Z",
+            "datePublished": "2022-12-27T15:23:31.000Z",
             "mainEntityOfPage": {
                 "@type": "WebPage",
-                "@id": "https://gaplegth.github.io/2023/01/27/npr-water/index.html"
+                "@id": "https://gaplegth.github.io/2022/12/27/npr-water/index.html"
             },
             "@context": "http://schema.org"
         }
@@ -136,12 +136,12 @@
             </div>
             <div class="header-menu-social">
                 
-    <a class="social" target="_blank" href="">
+    <a class="social" target="_blank" href="https://www.linkedin.com/in/joon-yu-1110b7198/">
         <ion-icon name="logo-linkedin"></ion-icon>
     </a>
 
-    <a class="social" target="_blank" href="">
-        <ion-icon name="logo-GOOGLE"></ion-icon>
+    <a class="social" target="_blank" href="mailto:gaplegth@163.com">
+        <ion-icon name="mail-outline"></ion-icon>
     </a>
 
             </div>
@@ -181,7 +181,7 @@
             <section class="inner">
                 <section class="inner-main">
                     <div class="post">
-    <article id="post-cldfkridf0000bku5581i7hrl" class="article article-type-post" itemscope
+    <article id="post-cldfn0hqk000mi4u57gdqf96b" class="article article-type-post" itemscope
     itemprop="blogPost">
 
     <div class="article-inner">
@@ -221,7 +221,7 @@
         <div class="article-more-info article-more-info-post hairline">
 
             <div class="article-date">
-  <time datetime="2023-01-27T15:23:31.000Z" itemprop="datePublished">2023-01-27</time>
+  <time datetime="2022-12-27T15:23:31.000Z" itemprop="datePublished">2022-12-27</time>
 </div>
 
             
@@ -284,7 +284,7 @@
 <h1 id="具体实现："><a href="#具体实现：" class="headerlink" title="具体实现："></a>具体实现：</h1><h2 id="定时渲染天空Cubemap："><a href="#定时渲染天空Cubemap：" class="headerlink" title="定时渲染天空Cubemap："></a>定时渲染天空Cubemap：</h2><p>渲这玩意呢主要是为了适配TOD（time of day，即动态的天空大气）系统。</p>
 <p>众所周知，所谓屏幕空间，就是咱们只能拿到屏幕上的信息。楼太高了超出屏幕上沿了，那底下的反射也会被截断了。以往为了弥补这种瑕疵，大家一般是采样一张cubemap填补超出屏幕的部分，或者直接就让反射逐渐消失完事。而带着TOD的时候，这张cubemap就不能是离线烘好的，而是得实时渲染。</p>
 <p>在Unity中，实时渲染cubemap大概有两种做法：新建一个CullingMask只有天空盒的相机，调用RenderToCubemap函数，优先主相机定时渲染一张rt；以及在RenderFeature里用V矩阵模拟六个方向的相机渲到一张rt上。第二个方法其实就是自己在RenderFeature里实现一遍RenderToCubemap函数，更底层一点，最重要是移植性更好，组织结构更清晰。性能上笔者没有测试过，但猜测两种实现应该都差不多。这里用的是第二种实现，上代码：</p>
-<pre><code class="cs">Matrix4x4 customV, customP;
+<pre><code class="csharp">Matrix4x4 customV, customP;
 drawSkyboxCmd.EnableShaderKeyword(&quot;CY_HEIGHT_FOG_SKY&quot;);
 CalCubeProjectMatrix(drawSkyboxCmd, out customP);
 
@@ -307,7 +307,7 @@ drawSkyboxCmd.SetViewProjectionMatrices(oriViewMatrix, oriProjMatrix);
 </center>
 <br>
 
-<pre><code class="cs">void CalCubeViewMatrixAndSetTarget(int faceID, RenderingData rD, CommandBuffer cmd, out Matrix4x4 customV)
+<pre><code class="csharp">void CalCubeViewMatrixAndSetTarget(int faceID, RenderingData rD, CommandBuffer cmd, out Matrix4x4 customV)
 &#123;
     Vector3 rotEular;
     CubemapFace cubemapFace;
@@ -351,7 +351,7 @@ drawSkyboxCmd.SetViewProjectionMatrices(oriViewMatrix, oriProjMatrix);
 </center>
 <br>
 
-<pre><code class="cs">Matrix4x4 ViewMatrixByEularRot(Vector3 eularRot, Vector3 camPos)
+<pre><code class="csharp">Matrix4x4 ViewMatrixByEularRot(Vector3 eularRot, Vector3 camPos)
 &#123;
     Quaternion rotQ = Quaternion.Euler(eularRot);
     Matrix4x4 customV = Matrix4x4.TRS(camPos, rotQ, Vector3.one);
@@ -500,15 +500,11 @@ dStep *= (1 + strideScaler);
     
 <nav class="article-nav">
   
-    <a href="/2023/01/28/npr-paint/" id="article-nav-newer" class="article-nav-link-wrap">
-      <div class="article-nav-caption">下一篇</div>
-      <div class="article-nav-title">
-        
-          npr-paint
-        
-      </div>
-    </a>
   
+    <a href="/2021/06/28/procedural-terrain/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-caption">上一篇</div>
+      <div class="article-nav-title">程序化岩石包边</div>
+    </a>
   
 </nav>
 
@@ -516,15 +512,15 @@ dStep *= (1 + strideScaler);
     <section class="share">
         <div class="share-title">分享</div>
         <a class="share-item" target="_blank"
-            href="https://twitter.com/share?text=移动端风格化SSR水体 - Joon Portfolio&url=https%3A%2F%2Fgaplegth.github.io%2F2023%2F01%2F27%2Fnpr-water%2F">
+            href="https://twitter.com/share?text=移动端风格化SSR水体 - Joon Portfolio&url=https%3A%2F%2Fgaplegth.github.io%2F2022%2F12%2F27%2Fnpr-water%2F">
             <ion-icon name="logo-twitter"></ion-icon>
         </a>
         <a class="share-item" target="_blank"
-            href="https://www.facebook.com/sharer.php?title=移动端风格化SSR水体 - Joon Portfolio&u=https%3A%2F%2Fgaplegth.github.io%2F2023%2F01%2F27%2Fnpr-water%2F">
+            href="https://www.facebook.com/sharer.php?title=移动端风格化SSR水体 - Joon Portfolio&u=https%3A%2F%2Fgaplegth.github.io%2F2022%2F12%2F27%2Fnpr-water%2F">
             <ion-icon name="logo-facebook"></ion-icon>
         </a>
         <!-- <a class="share-item" target="_blank"
-            href="https://service.weibo.com/share/share.php?title=移动端风格化SSR水体 - Joon Portfolio&url=https://gaplegth.github.io/2023/01/27/npr-water/&pic=">
+            href="https://service.weibo.com/share/share.php?title=移动端风格化SSR水体 - Joon Portfolio&url=https://gaplegth.github.io/2022/12/27/npr-water/&pic=">
             <div class="n-icon n-icon-weibo"></div>
         </a> -->
     </section>
@@ -571,7 +567,7 @@ dStep *= (1 + strideScaler);
   <div class="widget-wrap widget-cate">
     <div class="widget-title"><span>Categories</span></div>
     <div class="widget-inner">
-      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%B8%B2%E6%9F%93/">渲染</a></li></ul>
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%B8%B2%E6%9F%93/">渲染</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%A8%8B%E5%BA%8F%E5%8C%96%E5%BB%BA%E6%A8%A1/">程序化建模</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%BE%8E%E6%9C%AF/">美术</a></li></ul>
     </div>
   </div>
 
@@ -581,7 +577,7 @@ dStep *= (1 + strideScaler);
   <div class="widget-wrap widget-tags">
     <div class="widget-title"><span>Tags</span></div>
     <div class="widget-inner">
-      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/NPR/" rel="tag">NPR</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/URP/" rel="tag">URP</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Unity/" rel="tag">Unity</a></li></ul>
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/HDRP/" rel="tag">HDRP</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Houdini/" rel="tag">Houdini</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Maya/" rel="tag">Maya</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/NPR/" rel="tag">NPR</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Nature/" rel="tag">Nature</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/PBR/" rel="tag">PBR</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/PDG/" rel="tag">PDG</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Substance-Designer/" rel="tag">Substance Designer</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Substance-Painter/" rel="tag">Substance Painter</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/URP/" rel="tag">URP</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Unity/" rel="tag">Unity</a></li></ul>
     </div>
   </div>
 
@@ -594,11 +590,19 @@ dStep *= (1 + strideScaler);
       <ul>
         
           <li>
-            <a href="/2023/01/28/npr-paint/">npr-paint</a>
+            <a href="/2022/12/27/npr-water/">移动端风格化SSR水体</a>
           </li>
         
           <li>
-            <a href="/2023/01/27/npr-water/">移动端风格化SSR水体</a>
+            <a href="/2021/06/28/procedural-terrain/">程序化岩石包边</a>
+          </li>
+        
+          <li>
+            <a href="/2021/06/28/npr-paint/">风格化后处理</a>
+          </li>
+        
+          <li>
+            <a href="/2020/01/28/art-showcase/">旧作整理</a>
           </li>
         
       </ul>
@@ -610,7 +614,7 @@ dStep *= (1 + strideScaler);
   <div class="widget-wrap widget-archive">
     <div class="widget-title"><span>Archive</span></div>
     <div class="widget-inner">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/">2023</a></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/">2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/">2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/">2020</a></li></ul>
     </div>
   </div>
 
