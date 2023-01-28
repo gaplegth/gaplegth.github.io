@@ -8,9 +8,10 @@
     
     <title>移动端风格化SSR水体 | Joon Portfolio</title>
 
-    <meta name="description" content="&lt;p&gt;哈喽，这里是畅游引擎部的技美Joon。近年来，随着移动设备性能不断提升，市场和业界对于游戏画面表现的期待越来越高，很多以前难以在移动端实际使用的渲染效果也逐渐进入项目的考虑范围。而实时反射，就是其中一个重要特性。&lt;/p&gt;
-&lt;p&gt;如果您对于渲染稍有了解，应该会知道，实时渲染领域苦反射久矣。为什么这玩意难呢？那是因为反射意味着光线至少需要进行一次弹射之后（实际情况那必然不止一次），再进入观察者眼中。也就是想要实现实时反射效果，就免不了光线追踪。而真实感的光线追踪，在pc上跑都费劲，何况在移动端呢。所以，就算是现在的移动设备性能不错，想要其能够高性能地跑光追，也得是在种种约束条件之下，对质量进行一定的妥协，才能做到。&lt;/p&gt;
-&lt;p&gt;那么，用咱们现在移动端桎梏重重下的光追，在保证性能的前提下，做哪种材质的反射效果能达到表现要求？答案其中之一就是水体反射，特别是波光粼粼的那种水体效果。咱们先来看一下真实世界中的水体反射：&lt;/p&gt;">
+    <meta name="description" content="&lt;p&gt;&lt;font color=&#34;gray&#34;&gt;&lt;em&gt;此文之前已在其他平台发布过一次了，博客上的版本就好好排下版，然后行文更偏实用主义一点。&lt;/em&gt;&lt;/font&gt;&lt;/p&gt;
+&lt;p&gt;做这玩意的动机，主要是公司有这样的需求，又没找着合适改造的轮子，遂自己开发，也是一种学习。&lt;/p&gt;
+&lt;p&gt;性能上的要求是移动端能跑（米10为基准），那固然不能用真实感的ssr算法，得用一些hack来简化算法。至于能从哪些方面对算法进行简化，那不妨先观察一下，真实世界的水体：&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;/.io//npr-water-topic.png&#34;&gt;&lt;/p&gt;">
     <meta name="keywords" content="">
 
     
@@ -18,25 +19,29 @@
     <meta property="og:locale" content="zh-CN" />
     <meta property="og:type" content="article" />
     <meta property="og:title" content= "移动端风格化SSR水体 | Joon Portfolio"  />
-    <meta property="og:description" content= "&lt;p&gt;哈喽，这里是畅游引擎部的技美Joon。近年来，随着移动设备性能不断提升，市场和业界对于游戏画面表现的期待越来越高，很多以前难以在移动端实际使用的渲染效果也逐渐进入项目的考虑范围。而实时反射，就是其中一个重要特性。&lt;/p&gt;
-&lt;p&gt;如果您对于渲染稍有了解，应该会知道，实时渲染领域苦反射久矣。为什么这玩意难呢？那是因为反射意味着光线至少需要进行一次弹射之后（实际情况那必然不止一次），再进入观察者眼中。也就是想要实现实时反射效果，就免不了光线追踪。而真实感的光线追踪，在pc上跑都费劲，何况在移动端呢。所以，就算是现在的移动设备性能不错，想要其能够高性能地跑光追，也得是在种种约束条件之下，对质量进行一定的妥协，才能做到。&lt;/p&gt;
-&lt;p&gt;那么，用咱们现在移动端桎梏重重下的光追，在保证性能的前提下，做哪种材质的反射效果能达到表现要求？答案其中之一就是水体反射，特别是波光粼粼的那种水体效果。咱们先来看一下真实世界中的水体反射：&lt;/p&gt;" />
+    <meta property="og:description" content= "&lt;p&gt;&lt;font color=&#34;gray&#34;&gt;&lt;em&gt;此文之前已在其他平台发布过一次了，博客上的版本就好好排下版，然后行文更偏实用主义一点。&lt;/em&gt;&lt;/font&gt;&lt;/p&gt;
+&lt;p&gt;做这玩意的动机，主要是公司有这样的需求，又没找着合适改造的轮子，遂自己开发，也是一种学习。&lt;/p&gt;
+&lt;p&gt;性能上的要求是移动端能跑（米10为基准），那固然不能用真实感的ssr算法，得用一些hack来简化算法。至于能从哪些方面对算法进行简化，那不妨先观察一下，真实世界的水体：&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;/.io//npr-water-topic.png&#34;&gt;&lt;/p&gt;" />
     <meta property="og:url" content="https://gaplegth.github.io/2023/01/27/npr-water/index.html" />
     <meta property="og:site_name" content="" />
     <meta property="article:author" content="JoonYu" />
     <meta property="article:publisher" content="" />
-    <meta property="og:description" content="&lt;p&gt;哈喽，这里是畅游引擎部的技美Joon。近年来，随着移动设备性能不断提升，市场和业界对于游戏画面表现的期待越来越高，很多以前难以在移动端实际使用的渲染效果也逐渐进入项目的考虑范围。而实时反射，就是其中一个重要特性。&lt;/p&gt;
-&lt;p&gt;如果您对于渲染稍有了解，应该会知道，实时渲染领域苦反射久矣。为什么这玩意难呢？那是因为反射意味着光线至少需要进行一次弹射之后（实际情况那必然不止一次），再进入观察者眼中。也就是想要实现实时反射效果，就免不了光线追踪。而真实感的光线追踪，在pc上跑都费劲，何况在移动端呢。所以，就算是现在的移动设备性能不错，想要其能够高性能地跑光追，也得是在种种约束条件之下，对质量进行一定的妥协，才能做到。&lt;/p&gt;
-&lt;p&gt;那么，用咱们现在移动端桎梏重重下的光追，在保证性能的前提下，做哪种材质的反射效果能达到表现要求？答案其中之一就是水体反射，特别是波光粼粼的那种水体效果。咱们先来看一下真实世界中的水体反射：&lt;/p&gt;" />
+    <meta property="og:description" content="&lt;p&gt;&lt;font color=&#34;gray&#34;&gt;&lt;em&gt;此文之前已在其他平台发布过一次了，博客上的版本就好好排下版，然后行文更偏实用主义一点。&lt;/em&gt;&lt;/font&gt;&lt;/p&gt;
+&lt;p&gt;做这玩意的动机，主要是公司有这样的需求，又没找着合适改造的轮子，遂自己开发，也是一种学习。&lt;/p&gt;
+&lt;p&gt;性能上的要求是移动端能跑（米10为基准），那固然不能用真实感的ssr算法，得用一些hack来简化算法。至于能从哪些方面对算法进行简化，那不妨先观察一下，真实世界的水体：&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;/.io//npr-water-topic.png&#34;&gt;&lt;/p&gt;" />
     <meta name="twitter:title" content="移动端风格化SSR水体 | Joon Portfolio"/>
-    <meta name="twitter:description" content="&lt;p&gt;哈喽，这里是畅游引擎部的技美Joon。近年来，随着移动设备性能不断提升，市场和业界对于游戏画面表现的期待越来越高，很多以前难以在移动端实际使用的渲染效果也逐渐进入项目的考虑范围。而实时反射，就是其中一个重要特性。&lt;/p&gt;
-&lt;p&gt;如果您对于渲染稍有了解，应该会知道，实时渲染领域苦反射久矣。为什么这玩意难呢？那是因为反射意味着光线至少需要进行一次弹射之后（实际情况那必然不止一次），再进入观察者眼中。也就是想要实现实时反射效果，就免不了光线追踪。而真实感的光线追踪，在pc上跑都费劲，何况在移动端呢。所以，就算是现在的移动设备性能不错，想要其能够高性能地跑光追，也得是在种种约束条件之下，对质量进行一定的妥协，才能做到。&lt;/p&gt;
-&lt;p&gt;那么，用咱们现在移动端桎梏重重下的光追，在保证性能的前提下，做哪种材质的反射效果能达到表现要求？答案其中之一就是水体反射，特别是波光粼粼的那种水体效果。咱们先来看一下真实世界中的水体反射：&lt;/p&gt;"/>
+    <meta name="twitter:description" content="&lt;p&gt;&lt;font color=&#34;gray&#34;&gt;&lt;em&gt;此文之前已在其他平台发布过一次了，博客上的版本就好好排下版，然后行文更偏实用主义一点。&lt;/em&gt;&lt;/font&gt;&lt;/p&gt;
+&lt;p&gt;做这玩意的动机，主要是公司有这样的需求，又没找着合适改造的轮子，遂自己开发，也是一种学习。&lt;/p&gt;
+&lt;p&gt;性能上的要求是移动端能跑（米10为基准），那固然不能用真实感的ssr算法，得用一些hack来简化算法。至于能从哪些方面对算法进行简化，那不妨先观察一下，真实世界的水体：&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;/.io//npr-water-topic.png&#34;&gt;&lt;/p&gt;"/>
     <script type="application/ld+json">
         {
-            "description": "&lt;p&gt;哈喽，这里是畅游引擎部的技美Joon。近年来，随着移动设备性能不断提升，市场和业界对于游戏画面表现的期待越来越高，很多以前难以在移动端实际使用的渲染效果也逐渐进入项目的考虑范围。而实时反射，就是其中一个重要特性。&lt;/p&gt;
-&lt;p&gt;如果您对于渲染稍有了解，应该会知道，实时渲染领域苦反射久矣。为什么这玩意难呢？那是因为反射意味着光线至少需要进行一次弹射之后（实际情况那必然不止一次），再进入观察者眼中。也就是想要实现实时反射效果，就免不了光线追踪。而真实感的光线追踪，在pc上跑都费劲，何况在移动端呢。所以，就算是现在的移动设备性能不错，想要其能够高性能地跑光追，也得是在种种约束条件之下，对质量进行一定的妥协，才能做到。&lt;/p&gt;
-&lt;p&gt;那么，用咱们现在移动端桎梏重重下的光追，在保证性能的前提下，做哪种材质的反射效果能达到表现要求？答案其中之一就是水体反射，特别是波光粼粼的那种水体效果。咱们先来看一下真实世界中的水体反射：&lt;/p&gt;",
+            "description": "&lt;p&gt;&lt;font color=&#34;gray&#34;&gt;&lt;em&gt;此文之前已在其他平台发布过一次了，博客上的版本就好好排下版，然后行文更偏实用主义一点。&lt;/em&gt;&lt;/font&gt;&lt;/p&gt;
+&lt;p&gt;做这玩意的动机，主要是公司有这样的需求，又没找着合适改造的轮子，遂自己开发，也是一种学习。&lt;/p&gt;
+&lt;p&gt;性能上的要求是移动端能跑（米10为基准），那固然不能用真实感的ssr算法，得用一些hack来简化算法。至于能从哪些方面对算法进行简化，那不妨先观察一下，真实世界的水体：&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;/.io//npr-water-topic.png&#34;&gt;&lt;/p&gt;",
             "author": { "@type": "Person", "name": "JoonYu" },
             "@type": "BlogPosting",
             "url": "https://gaplegth.github.io/2023/01/27/npr-water/index.html",
@@ -76,11 +81,11 @@
     
 
     
-<link rel="stylesheet" href="/dist/build.css?v=1654266144177.css">
+<link rel="stylesheet" href="../../../../dist/build.css?v=1654266144177.css">
 
 
     
-<link rel="stylesheet" href="/dist/custom.css?v=1654266144177.css">
+<link rel="stylesheet" href="../../../../dist/custom.css?v=1654266144177.css">
 
 
     <script>
@@ -117,11 +122,11 @@
         <div class="header-menu">
             <div class="header-menu-inner">
                 
-                <a href="/">首页</a>
+                <a href="../../../../index.html">首页</a>
                 
-                <a href="/archives">存档</a>
+                <a href="../../../../archives">存档</a>
                 
-                <a href="/">摄影</a>
+                <a href="../../../../index.html">摄影</a>
                 
             </div>
             <div class="header-menu-social">
@@ -153,11 +158,11 @@
                 </div>
                 <div class="header-menu-mobile-menu-list">
                     
-                    <a href="/">首页</a>
+                    <a href="../../../../index.html">首页</a>
                     
-                    <a href="/archives">存档</a>
+                    <a href="../../../../archives">存档</a>
                     
-                    <a href="/">摄影</a>
+                    <a href="../../../../index.html">摄影</a>
                     
                 </div>
             </div>
@@ -171,27 +176,13 @@
             <section class="inner">
                 <section class="inner-main">
                     <div class="post">
-    <article id="post-cldesgrfg00020wu5aom09nuv" class="article article-type-post" itemscope
+    <article id="post-cldfgbmur0002j0u52z49h4h0" class="article article-type-post" itemscope
     itemprop="blogPost">
 
     <div class="article-inner">
 
         
           
-
-<div class="swiper-container article-gallery">
-  <div class="swiper-wrapper">
-    
-      <div class="swiper-slide">
-        <img src="/images/npr_topic.png" itemprop="image">
-      </div>
-    
-  </div>
-  <!-- 如果需要分页器 -->
-  <div class="swiper-pagination"></div>
-</div>
-
-
         
         
         
@@ -216,52 +207,51 @@
 
             
             <div class="article-category">
-                <a class="article-category-link" href="/categories/%E6%B8%B2%E6%9F%93/">渲染</a>
+                <a class="article-category-link" href="../../../../categories/%E6%B8%B2%E6%9F%93/">渲染</a>
             </div>
             
 
             
             <div class="article-tag">
-                <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/NPR/" rel="tag">NPR</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/URP/" rel="tag">URP</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Unity/" rel="tag">Unity</a></li></ul>
+                <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="../../../../tags/NPR/" rel="tag">NPR</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="../../../../tags/URP/" rel="tag">URP</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="../../../../tags/Unity/" rel="tag">Unity</a></li></ul>
             </div>
             
 
             
             <div class="article-busuanzi">
-                <span id="busuanzi_value_page_pv">N</span> 人看过
+                <span id="busuanzi_value_page_pv">N</span> views
             </div>
             
 
         </div>
 
         <div class="article-entry post-inner-html hairline" itemprop="articleBody">
-            <p>哈喽，这里是畅游引擎部的技美Joon。近年来，随着移动设备性能不断提升，市场和业界对于游戏画面表现的期待越来越高，很多以前难以在移动端实际使用的渲染效果也逐渐进入项目的考虑范围。而实时反射，就是其中一个重要特性。</p>
-<p>如果您对于渲染稍有了解，应该会知道，实时渲染领域苦反射久矣。为什么这玩意难呢？那是因为反射意味着光线至少需要进行一次弹射之后（实际情况那必然不止一次），再进入观察者眼中。也就是想要实现实时反射效果，就免不了光线追踪。而真实感的光线追踪，在pc上跑都费劲，何况在移动端呢。所以，就算是现在的移动设备性能不错，想要其能够高性能地跑光追，也得是在种种约束条件之下，对质量进行一定的妥协，才能做到。</p>
-<p>那么，用咱们现在移动端桎梏重重下的光追，在保证性能的前提下，做哪种材质的反射效果能达到表现要求？答案其中之一就是水体反射，特别是波光粼粼的那种水体效果。咱们先来看一下真实世界中的水体反射：</p>
+            <p><font color="gray"><em>此文之前已在其他平台发布过一次了，博客上的版本就好好排下版，然后行文更偏实用主义一点。</em></font></p>
+<p>做这玩意的动机，主要是公司有这样的需求，又没找着合适改造的轮子，遂自己开发，也是一种学习。</p>
+<p>性能上的要求是移动端能跑（米10为基准），那固然不能用真实感的ssr算法，得用一些hack来简化算法。至于能从哪些方面对算法进行简化，那不妨先观察一下，真实世界的水体：</p>
+<p><img src="/.io//npr-water-topic.png"></p>
 <span id="more"></span>
 
-
-<p>（笔者摄于古水北镇，慢门拍摄）</p>
-<p>可以观察到，真实世界中，这种带着轻微波浪的水反射成像已经基本上看不清实际的反射物，而只有轻微的轮廓。事实上，自然世界中真正如镜般的水面几乎是不存在的。网上看到那种镜面倒影的水面照片，也得是在拍摄时利用诸多手段，譬如偏振镜滤掉水的反光、慢门拍摄以及后期修图，才能达到镜子般的效果。而不需要清晰的反射成像，使得渲染水面实时反射的代价大大减少。</p>
-<p><img src="/media/2ebbaf55c55f96172005aa83bf2583dd.jpeg"></p>
-<p>（笔者摄于剑桥）</p>
+<p><font color="gray"><em>摄于古水北镇，慢门拍摄</em></font></p>
+<p>可以观察到，真实世界中，带着轻微波浪的水反射成像已经基本上看不清实际的反射物，而只有轻微的轮廓。总结起来，就是咱可以降分辨率了。</p>
+<p><font color="gray"><em>摄于剑桥</em></font></p>
 <p>从第二张图可以观察到，水体反射还有一个特点就是，对于远处的水面，我们的观察角度非常接近掠射角，从而导致水面细小的起伏都能对反射造成很大的干扰，同时也会使得视觉上感知到水面的高光更加密集。在这两点同时作用下，越远的倒影会越容易被高光遮盖，同时也会更加的模糊扭曲。这一点在实现水体反射的时候也可以考虑进去。</p>
-<p>固然，真实感的水体渲染非常复杂，并不是靠笔者几张照片胡乱分析一下就能概括的。但是，越接近真实，越接近物理正确，那性能就愈加难以接受。咱们要在游戏里跑，首先得要让玩家流畅地运行，首先追求一个“有”，条件允许之后才能去追求“优”。所以，既然移动端上难以做到真实，那咱们起码还可以追求艺术性，也就是风格化。可能我们无法模拟真实水体作为不均匀介质而导致的颜色细微变化，但起码我们可以用深度差做阈值给水体颜色营造层次感；可能我们对于物理正确的波浪起伏效果无从下手，但起码我们可以用法线图UV动画的方式来让表面“会动”“有浪”。听起来确实是有点寒碜，但人们想要通过各种手段去表达真实世界的意愿一直是无比强烈的。而在大体比较接近真实世界的渲染效果中，加入一点自己的创意和思考，很难说这不是人们自己对于大自然的进一步理解和交融。</p>
-<p>接下来，分析一下实现咱们的目标，风格化的水体实时反射，所能使用的技术。很凑巧，上个月（2022年11月）发布的骁龙8gen2和天玑9200，都相继实现了“移动硬光追”。笔者目前还没在这些设备上测试过光追性能，只是听业界朋友说，由于手机功耗限制，光追的性能非常受限。而软光追，我认为短时间内也不可能有实际应用，或许目前最大的盼头就是看UE5什么时候能在手机上跑Lumen。既然真正的场景光追跑不了，那咱们只能把希望寄托在光栅化就能实现的屏幕空间反射（screen space reflection，SSR）上了。（PS：其实也考虑过平面反射，但是与项目沟通之后考虑到大场景开发迭代中管理反射物会比较麻烦，故没有使用。不过这也是一个水面反射常用的实现手段，特别对于小场景来说很好用。）</p>
+<p>接下来，分析一下实现咱们的目标，风格化的水体实时反射，所能使用的技术。很凑巧，上个月（2022年11月）发布的骁龙8gen2和天玑9200，都相继实现了“移动硬光追”。笔者目前还没在这些设备上测试过光追性能，只是听业界朋友说，由于手机功耗限制，光追的性能非常受限。而软光追，我认为短时间内也不可能有实际应用，或许目前最大的盼头就是看UE5什么时候能在手机上跑Lumen。既然真正的场景光追跑不了，那咱们只能把希望寄托在光栅化就能实现的屏幕空间反射（screen space reflection，SSR）上了。</p>
+<p><font color="gray"><em>PS：其实也考虑过平面反射，但是与项目沟通之后考虑到大场景开发迭代中管理反射物会比较麻烦，故没有使用。不过这也是一个水面反射常用的实现手段，特别对于小场景来说很好用。</em></font></p>
 <p>对于这个概念不熟悉的读者，建议先在网上了解一下相关知识。在这里推荐一下闫令琪老师的GAMES202，看完之后可以对现代实时光追技术有一个宏观的了解。要在工程上实现一个能用的SSR水体，那自然不止要写SSR和水体渲染就行。为了更好地平衡性能和表现，咱们还需要进行很多其他处理，以及与现有的管线进行适配，和已有效果进行正确的叠加混合，有可能的话进行rt的复用。分析表现需求，将其转化为渲染逻辑的思考过程往往妙趣横生，但是真的开始实现的时候，不免枯燥乏味，令人抓狂。从此往后，笔者会注重于整个实现的思路介绍，一些工程上的实现细节以及一些趟出来的坑，希望能对想要实现类似效果的开发者们有所帮助。</p>
 <p>本次使用的是Unity 2021.3.5，URP 12.1.7版本，延迟管线，基于URP的RenderFeature接口实现。先放个视频看看最终的效果（场景素材来自网络）：</p>
 <p>（放入视频1）</p>
-<p>性能方面，在移动端（米10为基准）复杂场景打包测试中，此效果的开关对于帧率基本没有影响，具体的毫秒数还待打包测试。并且由于目前还在造轮子阶段，为了方便后续移植，一些可以集成到管线中的代码写在了外部，项目实际使用时可以进行进一步优化。</p>
+<p>性能方面，在移动端（米10为基准）复杂场景打包测试中，此效果的开关对于帧率基本没有影响，苹果机器测试出的消耗甚至不足一毫秒。并且由于目前还在造轮子阶段，为了方便后续移植，一些可以集成到管线中的代码写在了外部，项目实际使用时可以进行进一步优化。</p>
 <p>总的实现流程如下图，接下来开始逐步介绍：</p>
-<p><img src="/media/aef4d576f52b49414d2dd542f6862692.png"></p>
+<p><img src="/.io//aef4d576f52b49414d2dd542f6862692.png"></p>
 <ol>
 <li><p>定时渲染天空Cubemap：</p>
 <p>渲这玩意呢主要是为了适配TOD（time of day，即动态的天空大气）系统。众所周知，所谓屏幕空间，就是咱们只能拿到屏幕上的信息。楼太高了超出屏幕上沿了，那底下的反射也会被截断了。以往为了弥补这种瑕疵，大家一般是采样一张cubemap填补超出屏幕的部分，或者直接就让反射逐渐消失完事。而带着TOD的时候，这张cubemap就不能是离线烘好的，而是得实时渲染。在Unity中，实时渲染cubemap大概有两种做法：新建一个CullingMask只有天空盒的相机，调用RenderToCubemap函数，优先主相机定时渲染一张rt；以及在RenderFeature里用V矩阵模拟六个方向的相机渲到一张rt上。第二个方法其实就是自己在RenderFeature里实现一遍RenderToCubemap函数，更底层一点，最重要是移植性更好，组织结构更清晰。性能上笔者没有测试过，但猜测两种实现应该都差不多。这里用的是第二种实现，上代码：</p>
-<p><img src="/media/53eb49246b47b832f301085698801f5e.png"></p>
+<p><img src="/.io//53eb49246b47b832f301085698801f5e.png"></p>
 <p>Execute中的代码</p>
-<p><img src="/media/69e981b670ec2b8345faa956373499ff.png"></p>
+<p><img src="/.io//69e981b670ec2b8345faa956373499ff.png"></p>
 <p>计算六向V矩阵，主要的坑在api不同的时候rt对应的面不同。</p>
-<p><img src="/media/eadaed72f30a1a6db78792771f1cec18.png"></p>
+<p><img src="/.io//eadaed72f30a1a6db78792771f1cec18.png"></p>
 <p>需要手动反z。</p>
 </li>
 </ol>
@@ -276,26 +266,26 @@
 <p>至于为什么无论有没有通过求交都采样呢，是因为想要采样到实时的天空。而天空渲染在远裁，真通过射线打到远裁那射线步长和最大循环不得大到姥姥家，性能上不可能允许……而不判断求交会产生的问题，就是远处的物体反射会被拉长，如图：</p>
 </li>
 </ol>
-<p><img src="/media/b80992490055df2bc2b2a5c945f96292.png"></p>
+<p><img src="/.io//b80992490055df2bc2b2a5c945f96292.png"></p>
 <p>产生这样的原因，是射线太短了。比如离相机近的水面理应采样树林上面的天空，但是射线根本走不了这么远。知道原因之后，要弥补就好办了，咱们让离相机近的像素发出的射线步长更长就好了：</p>
-<p><img src="/media/8e8c4543e8a6dcafb4533c6529e9a971.png"></p>
+<p><img src="/.io//8e8c4543e8a6dcafb4533c6529e9a971.png"></p>
 <p>_PixelStrideZCutoff为可调的参数(rayOriginVS.z本身为负数)，这么做就可以大致解决远视距拉伸的问题。</p>
 <p>在视频中可以看到，这里做了一个反射效果随着视角变化的渐变过渡。关于这个渐变过渡遮罩生成，核心的判断条件是，像素离屏幕下左右三个边的距离、射线打到的位置实际深度、以及射线打到的位置离屏幕上沿的距离。同时，还使用了相机俯仰旋转和相机离水面高度作为输入。在映射的时候，主要是smoothstep和pow来控制效果变化，最后得到的渐变值保存在SSR绑定rt的a通道中。</p>
 <p>最后要提一下的是关于Unity各个空间转换的坑。一开始解决这玩意以及api适配花了大量的时间精力去debug。一个比较坑的是在片元里通过屏幕坐标和裁剪的z重建视空间坐标：</p>
-<p><img src="/media/2e08eaec419c208e8bc1d6c5024d335b.png"></p>
+<p><img src="/.io//2e08eaec419c208e8bc1d6c5024d335b.png"></p>
 <p>重点在要对zbuffer的深度也进行映射,而Unity自带的相关api都没有封装这一句……唯一一个实现在动态模糊的shader里，偶然之间发现：</p>
-<p><img src="/media/2c4a618a10055a135c992e3d7bde368c.png"></p>
+<p><img src="/.io//2c4a618a10055a135c992e3d7bde368c.png"></p>
 <p>实在是很神秘。虽说视空间的实现可以通过顶点插值来得到vs坐标，但是屏幕空间步进就不得不进行这个转换了。</p>
 <ol>
 <li><p>抖动采样：</p>
 <p>这一步，是为了弥补屏幕空间的信息不足。由于水进行扰动之后，采样的坐标会移动，而如果咱们渲SSR的时候中间有个东西挡住了场景，得到的结果中间就会有一个黑色区域。如果不处理，就会如下图：</p>
-<p><img src="/media/58a9da01450d493eeb3f8746e950cb60.png"></p>
-<p><img src="/media/84e55740bf440ca2bc4f874c6360d9e3.png"></p>
+<p><img src="/.io//58a9da01450d493eeb3f8746e950cb60.png"></p>
+<p><img src="/.io//84e55740bf440ca2bc4f874c6360d9e3.png"></p>
 <p>弥补的方法，就是判断当前像素是黑色的话，就往左右移动uv采样。移动的距离和次数与水体法线扰动程度有关。得到的结果如图：</p>
-<p><img src="/media/dbbbdeaba74cbb2683db971d039263e8.png"></p>
+<p><img src="/.io//dbbbdeaba74cbb2683db971d039263e8.png"></p>
 <p>这是对于中间黑两头有颜色的处理方法。如果只进行这样的判断，一些情况下会出现不需要的颜色：</p>
-<p><img src="/media/558241a1ccbd9b984dfae7343bb80308.png"></p>
-<p><img src="/media/34eb35cdca68fba788762767a73aa056.png"></p>
+<p><img src="/.io//558241a1ccbd9b984dfae7343bb80308.png"></p>
+<p><img src="/.io//34eb35cdca68fba788762767a73aa056.png"></p>
 <p>对于中间有颜色两头黑的情况，就得比较取巧的判断了。目前做法是左右采样采到颜色之后，往反方向继续采样，如果采样到了颜色再对当前像素进行赋值。这样做依然不能解决所有抖动采样出现的问题，但起码能解决一部分。</p>
 </li>
 <li><p>水体渲染：</p>
@@ -324,8 +314,8 @@
     
 <nav class="article-nav">
   
-    <a href="/2023/01/28/npr-paint/" id="article-nav-newer" class="article-nav-link-wrap">
-      <div class="article-nav-caption">下一篇</div>
+    <a href="../../28/npr-paint/" id="article-nav-newer" class="article-nav-link-wrap">
+      <div class="article-nav-caption">prossimo</div>
       <div class="article-nav-title">
         
           npr-paint
@@ -338,7 +328,7 @@
 
 
     <section class="share">
-        <div class="share-title">分享</div>
+        <div class="share-title">share</div>
         <a class="share-item" target="_blank"
             href="https://twitter.com/share?text=移动端风格化SSR水体 - Joon Portfolio&url=https%3A%2F%2Fgaplegth.github.io%2F2023%2F01%2F27%2Fnpr-water%2F">
             <ion-icon name="logo-twitter"></ion-icon>
@@ -395,7 +385,7 @@
   <div class="widget-wrap widget-cate">
     <div class="widget-title"><span>Categories</span></div>
     <div class="widget-inner">
-      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%B8%B2%E6%9F%93/">渲染</a></li></ul>
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="../../../../categories/%E6%B8%B2%E6%9F%93/">渲染</a></li></ul>
     </div>
   </div>
 
@@ -405,7 +395,7 @@
   <div class="widget-wrap widget-tags">
     <div class="widget-title"><span>Tags</span></div>
     <div class="widget-inner">
-      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/NPR/" rel="tag">NPR</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/URP/" rel="tag">URP</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Unity/" rel="tag">Unity</a></li></ul>
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="../../../../tags/NPR/" rel="tag">NPR</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../../../tags/URP/" rel="tag">URP</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../../../tags/Unity/" rel="tag">Unity</a></li></ul>
     </div>
   </div>
 
@@ -418,11 +408,15 @@
       <ul>
         
           <li>
-            <a href="/2023/01/28/npr-paint/">npr-paint</a>
+            <a href="../../28/testimg/">testimg</a>
           </li>
         
           <li>
-            <a href="/2023/01/27/npr-water/">移动端风格化SSR水体</a>
+            <a href="../../28/npr-paint/">npr-paint</a>
+          </li>
+        
+          <li>
+            <a href="">移动端风格化SSR水体</a>
           </li>
         
       </ul>
@@ -434,7 +428,7 @@
   <div class="widget-wrap widget-archive">
     <div class="widget-title"><span>Archive</span></div>
     <div class="widget-inner">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/">2023</a></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="../../../../archives/2023/">2023</a></li></ul>
     </div>
   </div>
 
@@ -471,10 +465,10 @@
 
 
 
-<script src="/dist/build.js?1654266144177.js"></script>
+<script src="../../../../dist/build.js?1654266144177.js"></script>
 
 
-<script src="/dist/custom.js?1654266144177.js"></script>
+<script src="../../../../dist/custom.js?1654266144177.js"></script>
 
 
 
