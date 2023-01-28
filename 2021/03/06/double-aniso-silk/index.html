@@ -161,7 +161,7 @@
             <section class="inner">
                 <section class="inner-main">
                     <div class="post">
-    <article id="post-cldful8u900008wu5fij27gen" class="article article-type-post" itemscope
+    <article id="post-cldfx8s170000u8u5b4i7holy" class="article article-type-post" itemscope
     itemprop="blogPost">
 
     <div class="article-inner">
@@ -333,7 +333,7 @@ float DV_SmithJointGGXAniso(float TdotH, float BdotH, float NdotH, float NdotV,
 <br>
 
 <p>以本人的实力不足以分出哪个更高效一点（感觉是不是也没必要扣这么细），所以都放着等高手来判断吧。</p>
-<p>旋转高光部分，要注意的是得根据法线贴图采样结果进行格拉姆-施密特正交化，在世界空间重新算切线和副切线，然后使用原始TBN矩阵转到切线空间进行旋转。代码如下：</p>
+<p>旋转高光部分，要注意的是得根据法线贴图采样结果进行格拉姆-施密特正交化，在世界空间重新算切线和副切线，然后使用采样完法线重新正交化的TBN矩阵转到切线空间进行旋转。代码如下：</p>
 <pre><code class="GLSL">#ifdef _CHANGE_TANGENT
     half3 orthTangentWS = Orthonormalize(s.tangentWorld, s.normalWorld);
     half3 orthBinormalWS = cross(orthTangentWS, s.normalWorld);
