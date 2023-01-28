@@ -8,10 +8,11 @@
     
     <title>移动端风格化SSR水体 | Joon Portfolio</title>
 
-    <meta name="description" content="&lt;p&gt;&lt;font color=&#34;gray&#34;&gt;&lt;em&gt;此文之前已在其他平台发布过一次了，博客上的版本就好好排下版，然后行文更偏实用主义一点。&lt;/em&gt;&lt;/font&gt;&lt;/p&gt;
-&lt;p&gt;做这玩意的动机，主要是公司有这样的需求，又没找着合适改造的轮子，遂自己开发，也是一种学习。&lt;/p&gt;
-&lt;p&gt;性能上的要求是移动端能跑（米10为基准），那固然不能用真实感的ssr算法，得用一些hack来简化算法。至于能从哪些方面对算法进行简化，那不妨先观察一下，真实世界的水体：&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;/.io//npr-water-topic.png&#34;&gt;&lt;/p&gt;">
+    <meta name="description" content="&lt;blockquote&gt;
+&lt;p&gt;此文之前已在其他平台发布过一次了，博客上的版本就好好排下版，然后行文更偏实用主义一点。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h1 id=&#34;前言：&#34;&gt;&lt;a href=&#34;#前言：&#34; class=&#34;headerlink&#34; title=&#34;前言：&#34;&gt;&lt;/a&gt;前言：&lt;/h1&gt;&lt;p&gt;做这玩意的动机，主要是公司有这样的需求，又没找着合适改造的轮子，遂自己开发，也是一种学习。&lt;/p&gt;
+&lt;p&gt;性能上的要求是移动端能跑（米10为基准），那固然不能用真实感的ssr算法，得用一些hack来简化算法。至于能从哪些方面对算法进行简化，那不妨先观察一下，真实世界的水体：&lt;/p&gt;">
     <meta name="keywords" content="">
 
     
@@ -19,29 +20,33 @@
     <meta property="og:locale" content="zh-CN" />
     <meta property="og:type" content="article" />
     <meta property="og:title" content= "移动端风格化SSR水体 | Joon Portfolio"  />
-    <meta property="og:description" content= "&lt;p&gt;&lt;font color=&#34;gray&#34;&gt;&lt;em&gt;此文之前已在其他平台发布过一次了，博客上的版本就好好排下版，然后行文更偏实用主义一点。&lt;/em&gt;&lt;/font&gt;&lt;/p&gt;
-&lt;p&gt;做这玩意的动机，主要是公司有这样的需求，又没找着合适改造的轮子，遂自己开发，也是一种学习。&lt;/p&gt;
-&lt;p&gt;性能上的要求是移动端能跑（米10为基准），那固然不能用真实感的ssr算法，得用一些hack来简化算法。至于能从哪些方面对算法进行简化，那不妨先观察一下，真实世界的水体：&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;/.io//npr-water-topic.png&#34;&gt;&lt;/p&gt;" />
+    <meta property="og:description" content= "&lt;blockquote&gt;
+&lt;p&gt;此文之前已在其他平台发布过一次了，博客上的版本就好好排下版，然后行文更偏实用主义一点。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h1 id=&#34;前言：&#34;&gt;&lt;a href=&#34;#前言：&#34; class=&#34;headerlink&#34; title=&#34;前言：&#34;&gt;&lt;/a&gt;前言：&lt;/h1&gt;&lt;p&gt;做这玩意的动机，主要是公司有这样的需求，又没找着合适改造的轮子，遂自己开发，也是一种学习。&lt;/p&gt;
+&lt;p&gt;性能上的要求是移动端能跑（米10为基准），那固然不能用真实感的ssr算法，得用一些hack来简化算法。至于能从哪些方面对算法进行简化，那不妨先观察一下，真实世界的水体：&lt;/p&gt;" />
     <meta property="og:url" content="https://gaplegth.github.io/2023/01/27/npr-water/index.html" />
     <meta property="og:site_name" content="" />
     <meta property="article:author" content="JoonYu" />
     <meta property="article:publisher" content="" />
-    <meta property="og:description" content="&lt;p&gt;&lt;font color=&#34;gray&#34;&gt;&lt;em&gt;此文之前已在其他平台发布过一次了，博客上的版本就好好排下版，然后行文更偏实用主义一点。&lt;/em&gt;&lt;/font&gt;&lt;/p&gt;
-&lt;p&gt;做这玩意的动机，主要是公司有这样的需求，又没找着合适改造的轮子，遂自己开发，也是一种学习。&lt;/p&gt;
-&lt;p&gt;性能上的要求是移动端能跑（米10为基准），那固然不能用真实感的ssr算法，得用一些hack来简化算法。至于能从哪些方面对算法进行简化，那不妨先观察一下，真实世界的水体：&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;/.io//npr-water-topic.png&#34;&gt;&lt;/p&gt;" />
+    <meta property="og:description" content="&lt;blockquote&gt;
+&lt;p&gt;此文之前已在其他平台发布过一次了，博客上的版本就好好排下版，然后行文更偏实用主义一点。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h1 id=&#34;前言：&#34;&gt;&lt;a href=&#34;#前言：&#34; class=&#34;headerlink&#34; title=&#34;前言：&#34;&gt;&lt;/a&gt;前言：&lt;/h1&gt;&lt;p&gt;做这玩意的动机，主要是公司有这样的需求，又没找着合适改造的轮子，遂自己开发，也是一种学习。&lt;/p&gt;
+&lt;p&gt;性能上的要求是移动端能跑（米10为基准），那固然不能用真实感的ssr算法，得用一些hack来简化算法。至于能从哪些方面对算法进行简化，那不妨先观察一下，真实世界的水体：&lt;/p&gt;" />
     <meta name="twitter:title" content="移动端风格化SSR水体 | Joon Portfolio"/>
-    <meta name="twitter:description" content="&lt;p&gt;&lt;font color=&#34;gray&#34;&gt;&lt;em&gt;此文之前已在其他平台发布过一次了，博客上的版本就好好排下版，然后行文更偏实用主义一点。&lt;/em&gt;&lt;/font&gt;&lt;/p&gt;
-&lt;p&gt;做这玩意的动机，主要是公司有这样的需求，又没找着合适改造的轮子，遂自己开发，也是一种学习。&lt;/p&gt;
-&lt;p&gt;性能上的要求是移动端能跑（米10为基准），那固然不能用真实感的ssr算法，得用一些hack来简化算法。至于能从哪些方面对算法进行简化，那不妨先观察一下，真实世界的水体：&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;/.io//npr-water-topic.png&#34;&gt;&lt;/p&gt;"/>
+    <meta name="twitter:description" content="&lt;blockquote&gt;
+&lt;p&gt;此文之前已在其他平台发布过一次了，博客上的版本就好好排下版，然后行文更偏实用主义一点。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h1 id=&#34;前言：&#34;&gt;&lt;a href=&#34;#前言：&#34; class=&#34;headerlink&#34; title=&#34;前言：&#34;&gt;&lt;/a&gt;前言：&lt;/h1&gt;&lt;p&gt;做这玩意的动机，主要是公司有这样的需求，又没找着合适改造的轮子，遂自己开发，也是一种学习。&lt;/p&gt;
+&lt;p&gt;性能上的要求是移动端能跑（米10为基准），那固然不能用真实感的ssr算法，得用一些hack来简化算法。至于能从哪些方面对算法进行简化，那不妨先观察一下，真实世界的水体：&lt;/p&gt;"/>
     <script type="application/ld+json">
         {
-            "description": "&lt;p&gt;&lt;font color=&#34;gray&#34;&gt;&lt;em&gt;此文之前已在其他平台发布过一次了，博客上的版本就好好排下版，然后行文更偏实用主义一点。&lt;/em&gt;&lt;/font&gt;&lt;/p&gt;
-&lt;p&gt;做这玩意的动机，主要是公司有这样的需求，又没找着合适改造的轮子，遂自己开发，也是一种学习。&lt;/p&gt;
-&lt;p&gt;性能上的要求是移动端能跑（米10为基准），那固然不能用真实感的ssr算法，得用一些hack来简化算法。至于能从哪些方面对算法进行简化，那不妨先观察一下，真实世界的水体：&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;/.io//npr-water-topic.png&#34;&gt;&lt;/p&gt;",
+            "description": "&lt;blockquote&gt;
+&lt;p&gt;此文之前已在其他平台发布过一次了，博客上的版本就好好排下版，然后行文更偏实用主义一点。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h1 id=&#34;前言：&#34;&gt;&lt;a href=&#34;#前言：&#34; class=&#34;headerlink&#34; title=&#34;前言：&#34;&gt;&lt;/a&gt;前言：&lt;/h1&gt;&lt;p&gt;做这玩意的动机，主要是公司有这样的需求，又没找着合适改造的轮子，遂自己开发，也是一种学习。&lt;/p&gt;
+&lt;p&gt;性能上的要求是移动端能跑（米10为基准），那固然不能用真实感的ssr算法，得用一些hack来简化算法。至于能从哪些方面对算法进行简化，那不妨先观察一下，真实世界的水体：&lt;/p&gt;",
             "author": { "@type": "Person", "name": "JoonYu" },
             "@type": "BlogPosting",
             "url": "https://gaplegth.github.io/2023/01/27/npr-water/index.html",
@@ -81,11 +86,11 @@
     
 
     
-<link rel="stylesheet" href="../../../../dist/build.css?v=1654266144177.css">
+<link rel="stylesheet" href="/dist/build.css?v=1654266144177.css">
 
 
     
-<link rel="stylesheet" href="../../../../dist/custom.css?v=1654266144177.css">
+<link rel="stylesheet" href="/dist/custom.css?v=1654266144177.css">
 
 
     <script>
@@ -122,11 +127,11 @@
         <div class="header-menu">
             <div class="header-menu-inner">
                 
-                <a href="../../../../index.html">首页</a>
+                <a href="/">首页</a>
                 
-                <a href="../../../../archives">存档</a>
+                <a href="/archives">存档</a>
                 
-                <a href="../../../../index.html">摄影</a>
+                <a href="/">摄影</a>
                 
             </div>
             <div class="header-menu-social">
@@ -158,11 +163,11 @@
                 </div>
                 <div class="header-menu-mobile-menu-list">
                     
-                    <a href="../../../../index.html">首页</a>
+                    <a href="/">首页</a>
                     
-                    <a href="../../../../archives">存档</a>
+                    <a href="/archives">存档</a>
                     
-                    <a href="../../../../index.html">摄影</a>
+                    <a href="/">摄影</a>
                     
                 </div>
             </div>
@@ -176,13 +181,27 @@
             <section class="inner">
                 <section class="inner-main">
                     <div class="post">
-    <article id="post-cldfgqa1z0002vcu59gch7cgn" class="article article-type-post" itemscope
+    <article id="post-cldfkridf0000bku5581i7hrl" class="article article-type-post" itemscope
     itemprop="blogPost">
 
     <div class="article-inner">
 
         
           
+
+<div class="swiper-container article-gallery">
+  <div class="swiper-wrapper">
+    
+      <div class="swiper-slide">
+        <img src="/images/water/topic.png" itemprop="image">
+      </div>
+    
+  </div>
+  <!-- 如果需要分页器 -->
+  <div class="swiper-pagination"></div>
+</div>
+
+
         
         
         
@@ -207,13 +226,13 @@
 
             
             <div class="article-category">
-                <a class="article-category-link" href="../../../../categories/%E6%B8%B2%E6%9F%93/">渲染</a>
+                <a class="article-category-link" href="/categories/%E6%B8%B2%E6%9F%93/">渲染</a>
             </div>
             
 
             
             <div class="article-tag">
-                <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="../../../../tags/NPR/" rel="tag">NPR</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="../../../../tags/URP/" rel="tag">URP</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="../../../../tags/Unity/" rel="tag">Unity</a></li></ul>
+                <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/NPR/" rel="tag">NPR</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/URP/" rel="tag">URP</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Unity/" rel="tag">Unity</a></li></ul>
             </div>
             
 
@@ -226,76 +245,237 @@
         </div>
 
         <div class="article-entry post-inner-html hairline" itemprop="articleBody">
-            <p><font color="gray"><em>此文之前已在其他平台发布过一次了，博客上的版本就好好排下版，然后行文更偏实用主义一点。</em></font></p>
-<p>做这玩意的动机，主要是公司有这样的需求，又没找着合适改造的轮子，遂自己开发，也是一种学习。</p>
+            <blockquote>
+<p>此文之前已在其他平台发布过一次了，博客上的版本就好好排下版，然后行文更偏实用主义一点。</p>
+</blockquote>
+<h1 id="前言："><a href="#前言：" class="headerlink" title="前言："></a>前言：</h1><p>做这玩意的动机，主要是公司有这样的需求，又没找着合适改造的轮子，遂自己开发，也是一种学习。</p>
 <p>性能上的要求是移动端能跑（米10为基准），那固然不能用真实感的ssr算法，得用一些hack来简化算法。至于能从哪些方面对算法进行简化，那不妨先观察一下，真实世界的水体：</p>
-<p><img src="/.io//npr-water-topic.png"></p>
 <span id="more"></span>
 
-<p><font color="gray"><em>摄于古水北镇，慢门拍摄</em></font></p>
+<center>
+<img src="/images/water/night.jpeg" height="330">
+
+<p><font color=gray>摄于古水北镇，慢门拍摄</font></p>
+</center>
+
 <p>可以观察到，真实世界中，带着轻微波浪的水反射成像已经基本上看不清实际的反射物，而只有轻微的轮廓。总结起来，就是咱可以降分辨率了。</p>
-<p><font color="gray"><em>摄于剑桥</em></font></p>
+<center>
+<img src="/images/water/cambridge.jpeg" height="330">
+
+<p><font color=gray>摄于剑桥</font></p>
+</center>
+
 <p>从第二张图可以观察到，水体反射还有一个特点就是，对于远处的水面，我们的观察角度非常接近掠射角，从而导致水面细小的起伏都能对反射造成很大的干扰，同时也会使得视觉上感知到水面的高光更加密集。在这两点同时作用下，越远的倒影会越容易被高光遮盖，同时也会更加的模糊扭曲。这一点在实现水体反射的时候也可以考虑进去。</p>
-<p>接下来，分析一下实现咱们的目标，风格化的水体实时反射，所能使用的技术。很凑巧，上个月（2022年11月）发布的骁龙8gen2和天玑9200，都相继实现了“移动硬光追”。笔者目前还没在这些设备上测试过光追性能，只是听业界朋友说，由于手机功耗限制，光追的性能非常受限。而软光追，我认为短时间内也不可能有实际应用，或许目前最大的盼头就是看UE5什么时候能在手机上跑Lumen。既然真正的场景光追跑不了，那咱们只能把希望寄托在光栅化就能实现的屏幕空间反射（screen space reflection，SSR）上了。</p>
-<p><font color="gray"><em>PS：其实也考虑过平面反射，但是与项目沟通之后考虑到大场景开发迭代中管理反射物会比较麻烦，故没有使用。不过这也是一个水面反射常用的实现手段，特别对于小场景来说很好用。</em></font></p>
+<p>接下来，分析一下咱们所能使用的技术。很凑巧，上个月（2022年11月）发布的骁龙8gen2和天玑9200，都相继实现了“移动硬光追”。笔者目前还没在这些设备上测试过光追性能，只是听业界朋友说，由于手机功耗限制，光追的性能非常受限。而软光追，我认为短时间内也不可能有实际应用，或许目前最大的盼头就是看UE5什么时候能在手机上跑Lumen。既然真正的场景光追跑不了，那咱们只能把希望寄托在光栅化就能实现的屏幕空间反射（Screen Space Reflection，SSR）上了。</p>
+<blockquote>
+<p>PS：其实也考虑过平面反射，但是与项目沟通之后考虑到大场景开发迭代中管理反射物会比较麻烦，故没有使用。不过这也是一个水面反射常用的实现手段，特别对于小场景来说很好用。</p>
+</blockquote>
 <p>对于这个概念不熟悉的读者，建议先在网上了解一下相关知识。在这里推荐一下闫令琪老师的GAMES202，看完之后可以对现代实时光追技术有一个宏观的了解。要在工程上实现一个能用的SSR水体，那自然不止要写SSR和水体渲染就行。为了更好地平衡性能和表现，咱们还需要进行很多其他处理，以及与现有的管线进行适配，和已有效果进行正确的叠加混合，有可能的话进行rt的复用。分析表现需求，将其转化为渲染逻辑的思考过程往往妙趣横生，但是真的开始实现的时候，不免枯燥乏味，令人抓狂。从此往后，笔者会注重于整个实现的思路介绍，一些工程上的实现细节以及一些趟出来的坑，希望能对想要实现类似效果的开发者们有所帮助。</p>
 <p>本次使用的是Unity 2021.3.5，URP 12.1.7版本，延迟管线，基于URP的RenderFeature接口实现。先放个视频看看最终的效果（场景素材来自网络）：</p>
-<p>（放入视频1）</p>
+<p><video src="/videos/showcase.mp4"></video></p>
 <p>性能方面，在移动端（米10为基准）复杂场景打包测试中，此效果的开关对于帧率基本没有影响，苹果机器测试出的消耗甚至不足一毫秒。并且由于目前还在造轮子阶段，为了方便后续移植，一些可以集成到管线中的代码写在了外部，项目实际使用时可以进行进一步优化。</p>
 <p>总的实现流程如下图，接下来开始逐步介绍：</p>
-<p><img src="/.io//aef4d576f52b49414d2dd542f6862692.png"></p>
-<ol>
-<li><p>定时渲染天空Cubemap：</p>
-<p>渲这玩意呢主要是为了适配TOD（time of day，即动态的天空大气）系统。众所周知，所谓屏幕空间，就是咱们只能拿到屏幕上的信息。楼太高了超出屏幕上沿了，那底下的反射也会被截断了。以往为了弥补这种瑕疵，大家一般是采样一张cubemap填补超出屏幕的部分，或者直接就让反射逐渐消失完事。而带着TOD的时候，这张cubemap就不能是离线烘好的，而是得实时渲染。在Unity中，实时渲染cubemap大概有两种做法：新建一个CullingMask只有天空盒的相机，调用RenderToCubemap函数，优先主相机定时渲染一张rt；以及在RenderFeature里用V矩阵模拟六个方向的相机渲到一张rt上。第二个方法其实就是自己在RenderFeature里实现一遍RenderToCubemap函数，更底层一点，最重要是移植性更好，组织结构更清晰。性能上笔者没有测试过，但猜测两种实现应该都差不多。这里用的是第二种实现，上代码：</p>
-<p><img src="/.io//53eb49246b47b832f301085698801f5e.png"></p>
-<p>Execute中的代码</p>
-<p><img src="/.io//69e981b670ec2b8345faa956373499ff.png"></p>
-<p>计算六向V矩阵，主要的坑在api不同的时候rt对应的面不同。</p>
-<p><img src="/.io//eadaed72f30a1a6db78792771f1cec18.png"></p>
-<p>需要手动反z。</p>
-</li>
-</ol>
+<center>
+<img src="/images/water/order.png" height="330">
+</center>
+
+<hr>
+
+<h1 id="具体实现："><a href="#具体实现：" class="headerlink" title="具体实现："></a>具体实现：</h1><h2 id="定时渲染天空Cubemap："><a href="#定时渲染天空Cubemap：" class="headerlink" title="定时渲染天空Cubemap："></a>定时渲染天空Cubemap：</h2><p>渲这玩意呢主要是为了适配TOD（time of day，即动态的天空大气）系统。</p>
+<p>众所周知，所谓屏幕空间，就是咱们只能拿到屏幕上的信息。楼太高了超出屏幕上沿了，那底下的反射也会被截断了。以往为了弥补这种瑕疵，大家一般是采样一张cubemap填补超出屏幕的部分，或者直接就让反射逐渐消失完事。而带着TOD的时候，这张cubemap就不能是离线烘好的，而是得实时渲染。</p>
+<p>在Unity中，实时渲染cubemap大概有两种做法：新建一个CullingMask只有天空盒的相机，调用RenderToCubemap函数，优先主相机定时渲染一张rt；以及在RenderFeature里用V矩阵模拟六个方向的相机渲到一张rt上。第二个方法其实就是自己在RenderFeature里实现一遍RenderToCubemap函数，更底层一点，最重要是移植性更好，组织结构更清晰。性能上笔者没有测试过，但猜测两种实现应该都差不多。这里用的是第二种实现，上代码：</p>
+<pre><code class="cs">Matrix4x4 customV, customP;
+drawSkyboxCmd.EnableShaderKeyword(&quot;CY_HEIGHT_FOG_SKY&quot;);
+CalCubeProjectMatrix(drawSkyboxCmd, out customP);
+
+for (int i = 0; i &lt; 6; i++)
+&#123;
+    CalCubeViewMatrixAndSetTarget(i, renderingData, drawSkyboxCmd, out customV);
+    var cubeCullingResults = CalCubeCullResult(renderingData, context, customV, customP);
+    context.ExecuteCommandBuffer(drawSkyboxCmd);
+    drawSkyboxCmd.Clear();
+    context.DrawRenderers(cubeCullingResults, ref drawSettings, ref m_FilteringSettings, ref m_RenderStateBlock);
+&#125;
+drawSkyboxCmd.DisableShaderKeyword(&quot;CY_HEIGHT_FOG_SKY&quot;);
+Matrix4x4 oriViewMatrix = renderingData.cameraData.camera.worldToCameraMatrix;
+Matrix4x4 oriProjMatrix = renderingData.cameraData.camera.projectionMatrix;
+drawSkyboxCmd.SetViewProjectionMatrices(oriViewMatrix, oriProjMatrix);
+</code></pre>
+<center>
+<font color=gray>Execute中的代码
+</font>
+</center>
+<br>
+
+<pre><code class="cs">void CalCubeViewMatrixAndSetTarget(int faceID, RenderingData rD, CommandBuffer cmd, out Matrix4x4 customV)
+&#123;
+    Vector3 rotEular;
+    CubemapFace cubemapFace;
+
+    switch(faceID)
+    &#123;
+        case 0:
+            rotEular = new Vector3(0, 90, 0);
+            cubemapFace = CubemapFace.PositiveX;
+            break;
+        case 1:
+            rotEular = new Vector3(0, -90, 0);
+            cubemapFace = CubemapFace.NegativeX;
+            break;
+        case 2:
+            rotEular = new Vector3(-90, 0, 0);
+            cubemapFace = SystemInfo.graphicsUVStartsAtTop ? CubemapFace.PositiveY : CubemapFace.NegativeY;
+            break;
+        case 3:
+            rotEular = new Vector3(90, 0, 0);
+            cubemapFace = SystemInfo.graphicsUVStartsAtTop ? CubemapFace.NegativeY : CubemapFace.PositiveY;
+            break;
+        case 4:
+            rotEular = new Vector3(0, 0, 0);
+            cubemapFace = CubemapFace.PositiveZ;
+            break;
+        default:
+            rotEular = new Vector3(0, 180, 0);
+            cubemapFace = CubemapFace.NegativeZ;
+            break;
+    &#125;
+
+    customV = ViewMatrixByEularRot(rotEular, rD.cameraData.worldSpaceCameraPos);
+    cmd.SetViewMatrix(customV);
+    cmd.SetRenderTarget(skyCubeRT, 0, cubemapFace);
+&#125;
+</code></pre>
+<center>
+<font color=gray>计算六向V矩阵，主要的坑在api不同的时候rt对应的面不同。
+</font>
+</center>
+<br>
+
+<pre><code class="cs">Matrix4x4 ViewMatrixByEularRot(Vector3 eularRot, Vector3 camPos)
+&#123;
+    Quaternion rotQ = Quaternion.Euler(eularRot);
+    Matrix4x4 customV = Matrix4x4.TRS(camPos, rotQ, Vector3.one);
+    customV = customV.inverse;
+
+    //if (SystemInfo.usesReversedZBuffer)
+    //&#123;
+        customV.m20 = -customV.m20;
+        customV.m21 = -customV.m21;
+        customV.m22 = -customV.m22;
+        customV.m23 = -customV.m23;
+    //&#125;
+
+    return customV;
+&#125;
+</code></pre>
+<center>
+<font color=gray>需要手动反z。
+</font>
+</center>
+<br>
+
 <p>坑基本都是些api适配啥的。这里一个还能优化的点是目前裁剪裁了六次，属于是不知道怎么让管线不进行裁剪的下策。而我试过用fov为179度的矩阵去裁一次，得到的结果也不理想，猜测是fov太大了远裁变形了。如果哪位大佬知道怎么关闭裁剪还请麻烦赐教，感谢感谢。</p>
-<ol>
-<li><p>渲染半分辨率深度：</p>
-<p>由于咱们对于反射质量要求不高，所以降一半分辨率目前在效果上看没啥问题。而为了能走earlyZ，SSR渲染的时候绑的深度rt也得是半分辨率的。这一步要注意的是得判断下reversed_z，来确定计算深度保守值时该取最大值还是最小值。</p>
-</li>
-<li><p>基于模型SSR计算：</p>
-<p>终于来到了重点部分。随着屏幕空间的各种技术发展，SSR的计算方法也在不断地迭代优化，总的来说就是更少的循环次数，更好的效果。但如前文所说，性能和质量本身就是不可兼得的，所以咱们得做出取舍。</p>
-<p>目前的SSR做法要点是：视空间步进，不做重要性采样，采样直接采颜色而不是BRDF参数，无论有没有通过深度求交都进行采样。可以说是和传统SSR的做法大不相同了。用到的优化方法只有常用的jitter，即给逐片元射线的步长加上一个随机数，使得低步进次数造成的横条状变成分布较为均匀的点（在视觉上会觉得图像更为连续），从而达到降低步进次数的目的。之前也试过屏幕空间步进的方法，但是就算使用了jitter也会采样出一道一道的明显横线，猜测是屏幕空间步进算法本身导致的。不过现在视空间设置最大步进8次就能达到效果，性能也不错，效果比屏幕空间的好，就没折腾了。至于Hiz的优化，涉及到整体管线的设计，同时也需要其他相关功能的优化和复用，属于是得给整个管线捋一遍的工作量，暂时没有进行。</p>
+<hr>
+
+<h2 id="渲染半分辨率深度："><a href="#渲染半分辨率深度：" class="headerlink" title="渲染半分辨率深度："></a>渲染半分辨率深度：</h2><p>由于咱们对于反射质量要求不高，所以降一半分辨率目前在效果上看没啥问题。而为了能走earlyZ，SSR渲染的时候绑的深度rt也得是半分辨率的。这一步要注意的是得判断下reversed_z，来确定计算深度保守值时该取最大值还是最小值。</p>
+<hr>
+
+<h2 id="基于模型SSR计算："><a href="#基于模型SSR计算：" class="headerlink" title="基于模型SSR计算："></a>基于模型SSR计算：</h2><p>终于来到了重点部分。随着屏幕空间的各种技术发展，SSR的计算方法也在不断地迭代优化，总的来说就是更少的循环次数，更好的效果。但如前文所说，性能和质量本身就是不可兼得的，所以咱们得做出取舍。</p>
+<p>目前的SSR做法要点是：视空间步进，不做重要性采样，采样直接采颜色而不是BRDF参数，无论有没有通过深度求交都进行采样。可以说是和传统SSR的做法大不相同了。用到的优化方法只有常用的jitter，即给逐片元射线的步长加上一个随机数，使得低步进次数造成的横条状变成分布较为均匀的点（在视觉上会觉得图像更为连续），从而达到降低步进次数的目的。</p>
+<p>之前也试过屏幕空间步进的方法，但是就算使用了jitter也会采样出一道一道的明显横线，猜测是屏幕空间步进算法本身导致的。不过现在视空间设置最大步进8次就能达到效果，性能也不错，效果比屏幕空间的好，就没折腾了。至于Hiz的优化，涉及到整体管线的设计，同时也需要其他相关功能的优化和复用，属于是得给整个管线捋一遍的工作量，暂时没有进行。</p>
 <p>至于为什么无论有没有通过求交都采样呢，是因为想要采样到实时的天空。而天空渲染在远裁，真通过射线打到远裁那射线步长和最大循环不得大到姥姥家，性能上不可能允许……而不判断求交会产生的问题，就是远处的物体反射会被拉长，如图：</p>
-</li>
-</ol>
-<p><img src="/.io//b80992490055df2bc2b2a5c945f96292.png"></p>
+<center>
+<img src="/images/water/far_flaw.png" height="330">
+</center>
+
 <p>产生这样的原因，是射线太短了。比如离相机近的水面理应采样树林上面的天空，但是射线根本走不了这么远。知道原因之后，要弥补就好办了，咱们让离相机近的像素发出的射线步长更长就好了：</p>
-<p><img src="/.io//8e8c4543e8a6dcafb4533c6529e9a971.png"></p>
+<pre><code class="GLSL">float strideScaler = 1.0 - min( 1.0, -rayOriginVS.z / _PixelStrideZCuttoff);
+float dStep = jitter + (abs(rayLength) / _MaxScreenNum);
+dStep *= (1 + strideScaler);
+</code></pre>
 <p>_PixelStrideZCutoff为可调的参数(rayOriginVS.z本身为负数)，这么做就可以大致解决远视距拉伸的问题。</p>
 <p>在视频中可以看到，这里做了一个反射效果随着视角变化的渐变过渡。关于这个渐变过渡遮罩生成，核心的判断条件是，像素离屏幕下左右三个边的距离、射线打到的位置实际深度、以及射线打到的位置离屏幕上沿的距离。同时，还使用了相机俯仰旋转和相机离水面高度作为输入。在映射的时候，主要是smoothstep和pow来控制效果变化，最后得到的渐变值保存在SSR绑定rt的a通道中。</p>
 <p>最后要提一下的是关于Unity各个空间转换的坑。一开始解决这玩意以及api适配花了大量的时间精力去debug。一个比较坑的是在片元里通过屏幕坐标和裁剪的z重建视空间坐标：</p>
-<p><img src="/.io//2e08eaec419c208e8bc1d6c5024d335b.png"></p>
+<pre><code class="GLSL">inline float3 ScreenSpaceToViewSpacePos(float2 ssUV, float zBufferDep)
+&#123;
+    #if UNITY_REVERSED_Z
+        zBufferDep = 1 - zBufferDep;
+    #endif
+
+    zBufferDep = zBufferDep * 2.0 - 1.0;
+
+    //modify from ComputeViewSpacePosition()
+    float4 positionCS = ComputeClipSpacePosition(ssUV, zBufferDep);
+    float4 positionVS = mul(unity_CameraInvProjection, positionCS);
+    float3 vPos = positionVS.xyz / positionVS.w;
+
+    #if UNITY_UV_STARTS_AT_TOP
+        vPos.y = -vPos.y;
+    #endif
+
+    return vPos;
+&#125;
+</code></pre>
 <p>重点在要对zbuffer的深度也进行映射,而Unity自带的相关api都没有封装这一句……唯一一个实现在动态模糊的shader里，偶然之间发现：</p>
-<p><img src="/.io//2c4a618a10055a135c992e3d7bde368c.png"></p>
-<p>实在是很神秘。虽说视空间的实现可以通过顶点插值来得到vs坐标，但是屏幕空间步进就不得不进行这个转换了。</p>
-<ol>
-<li><p>抖动采样：</p>
-<p>这一步，是为了弥补屏幕空间的信息不足。由于水进行扰动之后，采样的坐标会移动，而如果咱们渲SSR的时候中间有个东西挡住了场景，得到的结果中间就会有一个黑色区域。如果不处理，就会如下图：</p>
-<p><img src="/.io//58a9da01450d493eeb3f8746e950cb60.png"></p>
-<p><img src="/.io//84e55740bf440ca2bc4f874c6360d9e3.png"></p>
+<pre><code class="GLSL">half2 GetCameraVelocity(float4 uv)
+&#123;
+    float depth = SAMPLE_TEXTURE2D_X(_CameraDepthTexture, sampler_PointClamp, uv.xy).r;
+
+#if UNITY_REVERSED_Z
+    depth = 1.0 - depth;
+#endif
+
+    depth = 2.0 * depth - 1.0;
+
+    float3 viewPos = ComputeViewSpacePosition(uv.zw, depth, unity_CameraInvProjection);
+    float4 worldPos = float4(mul(unity_CameraToWorld, float4(viewPos, 1.0)).xyz, 1.0);
+    float4 prevPos = worldPos;
+
+    float4 prevClipPos = mul(_PrevViewProjM, prevPos);
+    float4 curClipPos = mul(_ViewProjM, worldPos);
+
+    half2 prevPosCS = prevClipPos.xy / prevClipPos.w;
+    half2 curPosCS = curClipPos.xy / curClipPos.w;
+
+    return ClampVelocity(prevPosCS - curPosCS, _Clamp);
+&#125;
+</code></pre>
+<p>实在是很神秘。到头来主要还是难以debug出封装的矩阵里头干了啥。</p>
+<hr>
+
+<h2 id="抖动采样："><a href="#抖动采样：" class="headerlink" title="抖动采样："></a>抖动采样：</h2><p>这一步，是为了弥补屏幕空间的信息不足。由于水进行扰动之后，采样的坐标会移动，而如果咱们渲SSR的时候中间有个东西挡住了场景，得到的结果中间就会有一个黑色区域。如果不处理，就会如下图：</p>
+<center>
+<img src="/images/water/shake1.png" height="330">
+</center>
+
+<center>
+<img src="/images/water/shake2.png" height="330">
+</center>
+
 <p>弥补的方法，就是判断当前像素是黑色的话，就往左右移动uv采样。移动的距离和次数与水体法线扰动程度有关。得到的结果如图：</p>
-<p><img src="/.io//dbbbdeaba74cbb2683db971d039263e8.png"></p>
+<center>
+<img src="/images/water/shake3.png" height="330">
+</center>
+
 <p>这是对于中间黑两头有颜色的处理方法。如果只进行这样的判断，一些情况下会出现不需要的颜色：</p>
-<p><img src="/.io//558241a1ccbd9b984dfae7343bb80308.png"></p>
-<p><img src="/.io//34eb35cdca68fba788762767a73aa056.png"></p>
+<center>
+<img src="/images/water/shake5.png" height="330">
+</center>
+
+<center>
+<img src="/images/water/shake4.png" height="330">
+</center>
+
 <p>对于中间有颜色两头黑的情况，就得比较取巧的判断了。目前做法是左右采样采到颜色之后，往反方向继续采样，如果采样到了颜色再对当前像素进行赋值。这样做依然不能解决所有抖动采样出现的问题，但起码能解决一部分。</p>
-</li>
-<li><p>水体渲染：</p>
-<p>这个部分的做法，就是各家有各家的美术要求，风格化嘛，解决方案没有什么标准。这里的实现由于不需要表现波涛汹涌的水面，所以没有加入顶点偏移。大概总结一下一些实现的效果：深浅水颜色，岸边泡沫，使用Worley噪声的焦散，Blinn-Phone高光，两张法线图叠加扰动，菲涅尔混合反射折射。其中前三个需设置深度阈值。以及关于前面提到的距离越远扰动越剧烈，可以把法线扰动偏移和深度建立函数关系，至于多远想要扰动多剧烈设置一个参数调节就好了。</p>
+<hr>
+
+<h2 id="水体渲染："><a href="#水体渲染：" class="headerlink" title="水体渲染："></a>水体渲染：</h2><p>这个部分的做法，就是各家有各家的美术要求，风格化嘛，解决方案没有什么标准。这里的实现由于不需要表现波涛汹涌的水面，所以没有加入顶点偏移。大概总结一下一些实现的效果：深浅水颜色，岸边泡沫，使用Worley噪声的焦散，Blinn-Phone高光，两张法线图叠加扰动，菲涅尔混合反射折射。其中前三个需设置深度阈值。以及关于前面提到的距离越远扰动越剧烈，可以把法线扰动偏移和深度建立函数关系，至于多远想要扰动多剧烈设置一个参数调节就好了。</p>
 <p>值得提一下的是反射部分。如前文所说，咱们现在有一张每隔一段时间刷新一次的天空盒cubemap，以及通过SSR得到的实时反射rt。这两张rt是通过之前计算的ssr渐变遮罩值来混合的，他们共同组成咱们水面的反射颜色。具体的效果就是，反射物超出屏幕的部分，会替换成定时刷新的天空，配合TOD系统和雾效，整体观感是比较自然的。</p>
 <p>其他部分的具体实现，网络上有大量的文章任君挑选，代码基本都是现成的，工作量主要是在对美术表现和渲染语言之间的翻译上。按我这边实现的过程来看，全都是一些渐变过渡效果，勤用smoothstep、pow和lerp，设置一大堆可以调节的阈值，完活。</p>
+<hr>
+
 <p>分享到这里就结束了。这一套东西一路做下来，能达到现在的效果和性能，离不开几位引擎大佬的帮助，我也是受益良多，在这里对他们表达最诚挚的谢意！同时，也深感渲染领域还有太多太多的东西值得去学习。道阻且长，行则将至，与君共勉！</p>
 <p>本文权当抛砖引玉，如果上文有任何错误的地方，或者有更好的做法，还请不吝赐教，感谢您的阅读！</p>
-</li>
-</ol>
 
         </div>
 
@@ -308,13 +488,19 @@
     
 
     
+  <div class="article-copyright hairline">
+    <p>
+      本作品采用  <a rel="license noopener" target="_blank" href="http://creativecommons.org/licenses/by-nc-nd/4.0/">知识共享署名-非商业性使用-禁止演绎 4.0 国际许可协议 (CC BY-NC-ND 4.0)</a> 进行许可。
+    </p>
+  </div>
+  
 
     
 
     
 <nav class="article-nav">
   
-    <a href="../../28/npr-paint/" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/2023/01/28/npr-paint/" id="article-nav-newer" class="article-nav-link-wrap">
       <div class="article-nav-caption">下一篇</div>
       <div class="article-nav-title">
         
@@ -385,7 +571,7 @@
   <div class="widget-wrap widget-cate">
     <div class="widget-title"><span>Categories</span></div>
     <div class="widget-inner">
-      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="../../../../categories/%E6%B8%B2%E6%9F%93/">渲染</a></li></ul>
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%B8%B2%E6%9F%93/">渲染</a></li></ul>
     </div>
   </div>
 
@@ -395,7 +581,7 @@
   <div class="widget-wrap widget-tags">
     <div class="widget-title"><span>Tags</span></div>
     <div class="widget-inner">
-      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="../../../../tags/NPR/" rel="tag">NPR</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../../../tags/URP/" rel="tag">URP</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../../../tags/Unity/" rel="tag">Unity</a></li></ul>
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/NPR/" rel="tag">NPR</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/URP/" rel="tag">URP</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Unity/" rel="tag">Unity</a></li></ul>
     </div>
   </div>
 
@@ -408,15 +594,11 @@
       <ul>
         
           <li>
-            <a href="../../28/testimg/">testimg</a>
+            <a href="/2023/01/28/npr-paint/">npr-paint</a>
           </li>
         
           <li>
-            <a href="../../28/npr-paint/">npr-paint</a>
-          </li>
-        
-          <li>
-            <a href="">移动端风格化SSR水体</a>
+            <a href="/2023/01/27/npr-water/">移动端风格化SSR水体</a>
           </li>
         
       </ul>
@@ -428,7 +610,7 @@
   <div class="widget-wrap widget-archive">
     <div class="widget-title"><span>Archive</span></div>
     <div class="widget-inner">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="../../../../archives/2023/">2023</a></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/">2023</a></li></ul>
     </div>
   </div>
 
@@ -465,10 +647,10 @@
 
 
 
-<script src="../../../../dist/build.js?1654266144177.js"></script>
+<script src="/dist/build.js?1654266144177.js"></script>
 
 
-<script src="../../../../dist/custom.js?1654266144177.js"></script>
+<script src="/dist/custom.js?1654266144177.js"></script>
 
 
 
