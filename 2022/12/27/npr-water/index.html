@@ -181,7 +181,7 @@
             <section class="inner">
                 <section class="inner-main">
                     <div class="post">
-    <article id="post-cldilglgs0009kku58om4gxl3" class="article article-type-post" itemscope
+    <article id="post-cldirwzvv000amcu5d4v31zy1" class="article article-type-post" itemscope
     itemprop="blogPost">
 
     <div class="article-inner">
@@ -272,7 +272,8 @@
 </blockquote>
 <p>对于这个概念不熟悉的读者，建议先在网上了解一下相关知识。在这里推荐一下闫令琪老师的GAMES202，看完之后可以对现代实时光追技术有一个宏观的了解。要在工程上实现一个能用的SSR水体，那自然不止要写SSR和水体渲染就行。为了更好地平衡性能和表现，咱们还需要进行很多其他处理，以及与现有的管线进行适配，和已有效果进行正确的叠加混合，有可能的话进行rt的复用。分析表现需求，将其转化为渲染逻辑的思考过程往往妙趣横生，但是真的开始实现的时候，不免枯燥乏味，令人抓狂。从此往后，笔者会注重于整个实现的思路介绍，一些工程上的实现细节以及一些趟出来的坑，希望能对想要实现类似效果的开发者们有所帮助。</p>
 <p>本次使用的是Unity 2021.3.5，URP 12.1.7版本，延迟管线，基于URP的RenderFeature接口实现。先放个视频看看最终的效果（场景素材来自网络）：</p>
-<p><video src="/videos/showcase.mp4"></video></p>
+<iframe src="//player.bilibili.com/player.html?aid=608542366&bvid=BV1Y84y1L7ao&cid=985733366&page=1" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true" width=100% height="500"> </iframe>
+
 <p>性能方面，在移动端（米10为基准）复杂场景打包测试中，此效果的开关对于帧率基本没有影响，苹果机器测试出的消耗甚至不足一毫秒。并且由于目前还在造轮子阶段，为了方便后续移植，一些可以集成到管线中的代码写在了外部，项目实际使用时可以进行进一步优化。</p>
 <p>总的实现流程如下图，接下来开始逐步介绍：</p>
 <center>
@@ -501,7 +502,7 @@ dStep *= (1 + strideScaler);
 <nav class="article-nav">
   
     <a href="/2023/01/29/procedural-terrain/" id="article-nav-newer" class="article-nav-link-wrap">
-      <div class="article-nav-caption">下一篇</div>
+      <div class="article-nav-caption">prossimo</div>
       <div class="article-nav-title">
         
           程序化岩石包边
@@ -511,7 +512,7 @@ dStep *= (1 + strideScaler);
   
   
     <a href="/2021/08/25/road-editor/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-caption">上一篇</div>
+      <div class="article-nav-caption">precedente</div>
       <div class="article-nav-title">路网生成器</div>
     </a>
   
@@ -519,7 +520,7 @@ dStep *= (1 + strideScaler);
 
 
     <section class="share">
-        <div class="share-title">分享</div>
+        <div class="share-title">share</div>
         <a class="share-item" target="_blank"
             href="https://twitter.com/share?text=移动端风格化SSR水体 - Joon Portfolio&url=https%3A%2F%2Fgaplegth.github.io%2F2022%2F12%2F27%2Fnpr-water%2F">
             <ion-icon name="logo-twitter"></ion-icon>
