@@ -1,0 +1,655 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+
+    
+    <title>风格化场景后处理 | Joon Portfolio</title>
+
+    <meta name="description" content="&lt;p&gt;老早之前玩过破晓传奇来着，当时就觉得场景的风格化做的挺有意思，所以和同事截帧分析了一波。发现他们场景物体贴图上并没有类似水彩笔触一样的纹路，所以理所当然地觉着是后处理做的。&lt;/p&gt;
+&lt;p&gt;至于具体是怎么做的，在写这篇文的时候正主已经出来进行过技术分享了，笔触的效果主要是客制化的SNN Filter，描边，以及双边滤波模糊来整的，并且加入了多种权重来调整卷积核，例如边缘检测结果。具体的分享已有大佬做了分析：&lt;/p&gt;">
+    <meta name="keywords" content="">
+
+    
+
+    <meta property="og:locale" content="zh-CN" />
+    <meta property="og:type" content="article" />
+    <meta property="og:title" content= "风格化场景后处理 | Joon Portfolio"  />
+    <meta property="og:description" content= "&lt;p&gt;老早之前玩过破晓传奇来着，当时就觉得场景的风格化做的挺有意思，所以和同事截帧分析了一波。发现他们场景物体贴图上并没有类似水彩笔触一样的纹路，所以理所当然地觉着是后处理做的。&lt;/p&gt;
+&lt;p&gt;至于具体是怎么做的，在写这篇文的时候正主已经出来进行过技术分享了，笔触的效果主要是客制化的SNN Filter，描边，以及双边滤波模糊来整的，并且加入了多种权重来调整卷积核，例如边缘检测结果。具体的分享已有大佬做了分析：&lt;/p&gt;" />
+    <meta property="og:url" content="https://gaplegth.github.io/2023/01/31/npr-paint/index.html" />
+    <meta property="og:site_name" content="" />
+    <meta property="article:author" content="JoonYu" />
+    <meta property="article:publisher" content="" />
+    <meta property="og:description" content="&lt;p&gt;老早之前玩过破晓传奇来着，当时就觉得场景的风格化做的挺有意思，所以和同事截帧分析了一波。发现他们场景物体贴图上并没有类似水彩笔触一样的纹路，所以理所当然地觉着是后处理做的。&lt;/p&gt;
+&lt;p&gt;至于具体是怎么做的，在写这篇文的时候正主已经出来进行过技术分享了，笔触的效果主要是客制化的SNN Filter，描边，以及双边滤波模糊来整的，并且加入了多种权重来调整卷积核，例如边缘检测结果。具体的分享已有大佬做了分析：&lt;/p&gt;" />
+    <meta name="twitter:title" content="风格化场景后处理 | Joon Portfolio"/>
+    <meta name="twitter:description" content="&lt;p&gt;老早之前玩过破晓传奇来着，当时就觉得场景的风格化做的挺有意思，所以和同事截帧分析了一波。发现他们场景物体贴图上并没有类似水彩笔触一样的纹路，所以理所当然地觉着是后处理做的。&lt;/p&gt;
+&lt;p&gt;至于具体是怎么做的，在写这篇文的时候正主已经出来进行过技术分享了，笔触的效果主要是客制化的SNN Filter，描边，以及双边滤波模糊来整的，并且加入了多种权重来调整卷积核，例如边缘检测结果。具体的分享已有大佬做了分析：&lt;/p&gt;"/>
+    <script type="application/ld+json">
+        {
+            "description": "&lt;p&gt;老早之前玩过破晓传奇来着，当时就觉得场景的风格化做的挺有意思，所以和同事截帧分析了一波。发现他们场景物体贴图上并没有类似水彩笔触一样的纹路，所以理所当然地觉着是后处理做的。&lt;/p&gt;
+&lt;p&gt;至于具体是怎么做的，在写这篇文的时候正主已经出来进行过技术分享了，笔触的效果主要是客制化的SNN Filter，描边，以及双边滤波模糊来整的，并且加入了多种权重来调整卷积核，例如边缘检测结果。具体的分享已有大佬做了分析：&lt;/p&gt;",
+            "author": { "@type": "Person", "name": "JoonYu" },
+            "@type": "BlogPosting",
+            "url": "https://gaplegth.github.io/2023/01/31/npr-paint/index.html",
+            "publisher": {
+            "@type": "Organization",
+            "logo": {
+                "@type": "ImageObject",
+                "url": "https://gaplegth.github.ioundefined"
+            },
+            "name": "JoonYu"
+            },
+            "headline": "风格化场景后处理 | Joon Portfolio",
+            "datePublished": "2023-01-31T09:24:23.000Z",
+            "mainEntityOfPage": {
+                "@type": "WebPage",
+                "@id": "https://gaplegth.github.io/2023/01/31/npr-paint/index.html"
+            },
+            "@context": "http://schema.org"
+        }
+    </script>
+
+
+
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+<link rel="stylesheet" href="/dist/build.css?v=1654266144177.css">
+
+
+    
+<link rel="stylesheet" href="/dist/custom.css?v=1654266144177.css">
+
+
+    <script>
+        window.isPost = true
+        window.aomori = {
+            
+            
+            
+        }
+        window.aomori_logo_typed_animated = true
+        window.aomori_search_algolia = false
+
+    </script>
+
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+<body>
+
+    <div class="container">
+    <header class="header">
+        <div class="header-type">
+            
+            <div class="header-type-inner">
+                
+                    <div id="typed-strings" style="display:none">
+                        <p>Joon Portfolio</p>
+                    </div>
+                    <a class="header-type-title" id="typed" href="/"></a>
+                
+    
+                
+            </div>
+        </div>
+        <div class="header-menu">
+            <div class="header-menu-inner">
+                
+                <a href="/">首页</a>
+                
+                <a href="/archives">存档</a>
+                
+                <a href="/photography">摄影</a>
+                
+            </div>
+            <div class="header-menu-social">
+                
+    <a class="social" target="_blank" href="https://www.linkedin.com/in/joon-yu-1110b7198/">
+        <ion-icon name="logo-linkedin"></ion-icon>
+    </a>
+
+    <a class="social" target="_blank" href="mailto:gaplegth@163.com">
+        <ion-icon name="mail-outline"></ion-icon>
+    </a>
+
+            </div>
+        </div>
+
+        <div class="header-menu-mobile">
+            <div class="header-menu-mobile-inner" id="mobile-menu-open">
+                <i class="icon icon-menu"></i>
+            </div>
+        </div>
+    </header>
+
+    <div class="header-menu-mobile-menu">
+        <div class="header-menu-mobile-menu-bg"></div>
+        <div class="header-menu-mobile-menu-wrap">
+            <div class="header-menu-mobile-menu-inner">
+                <div class="header-menu-mobile-menu-close" id="mobile-menu-close">
+                    <i class="icon icon-cross"></i>
+                </div>
+                <div class="header-menu-mobile-menu-list">
+                    
+                    <a href="/">首页</a>
+                    
+                    <a href="/archives">存档</a>
+                    
+                    <a href="/photography">摄影</a>
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+    <div class="container">
+        <div class="main">
+            <section class="inner">
+                <section class="inner-main">
+                    <div class="post">
+    <article id="post-cldkkxzxl00024ou53utwafur" class="article article-type-post" itemscope
+    itemprop="blogPost">
+
+    <div class="article-inner">
+
+        
+          
+
+<div class="swiper-container article-gallery">
+  <div class="swiper-wrapper">
+    
+      <div class="swiper-slide">
+        <img src="https://gaplegth-blog.oss-cn-shanghai.aliyuncs.com/202301312309714.png" itemprop="image">
+      </div>
+    
+  </div>
+  <!-- 如果需要分页器 -->
+  <div class="swiper-pagination"></div>
+</div>
+
+
+        
+        
+        
+
+        
+        <header class="article-header">
+            
+  
+    <h1 class="article-title" itemprop="name">
+      风格化场景后处理
+    </h1>
+  
+
+        </header>
+        
+
+        <div class="article-more-info article-more-info-post hairline">
+
+            <div class="article-date">
+  <time datetime="2023-01-31T09:24:23.000Z" itemprop="datePublished">2023-01-31</time>
+</div>
+
+            
+            <div class="article-category">
+                <a class="article-category-link" href="/categories/%E6%B8%B2%E6%9F%93/">渲染</a>
+            </div>
+            
+
+            
+            <div class="article-tag">
+                <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/NPR/" rel="tag">NPR</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/URP/" rel="tag">URP</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Unity/" rel="tag">Unity</a></li></ul>
+            </div>
+            
+
+            
+            <div class="article-busuanzi">
+                <span id="busuanzi_value_page_pv">N</span> 人看过
+            </div>
+            
+
+        </div>
+
+        <div class="article-entry post-inner-html hairline" itemprop="articleBody">
+            <p>老早之前玩过破晓传奇来着，当时就觉得场景的风格化做的挺有意思，所以和同事截帧分析了一波。发现他们场景物体贴图上并没有类似水彩笔触一样的纹路，所以理所当然地觉着是后处理做的。</p>
+<p>至于具体是怎么做的，在写这篇文的时候正主已经出来进行过技术分享了，笔触的效果主要是客制化的SNN Filter，描边，以及双边滤波模糊来整的，并且加入了多种权重来调整卷积核，例如边缘检测结果。具体的分享已有大佬做了分析：</p>
+<span id="more"></span>
+
+<blockquote>
+<p>技术分享：<a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/568731521">https://zhuanlan.zhihu.com/p/568731521</a></p>
+</blockquote>
+<blockquote>
+<p>技术分析：<a target="_blank" rel="noopener" href="http://www.freeexc.me/p/%E7%A0%B4%E6%99%93%E4%BC%A0%E8%AF%B4%E6%8A%80%E6%9C%AF%E7%BE%8E%E6%9C%AF%E5%88%86%E6%9E%90%E4%B8%8E%E9%83%A8%E5%88%86%E6%95%88%E6%9E%9C%E5%AE%9E%E7%8E%B0%EF%BC%88%E5%89%8D%E7%AF%87%EF%BC%89">http://www.freeexc.me/p/%E7%A0%B4%E6%99%93%E4%BC%A0%E8%AF%B4%E6%8A%80%E6%9C%AF%E7%BE%8E%E6%9C%AF%E5%88%86%E6%9E%90%E4%B8%8E%E9%83%A8%E5%88%86%E6%95%88%E6%9E%9C%E5%AE%9E%E7%8E%B0%EF%BC%88%E5%89%8D%E7%AF%87%EF%BC%89</a></p>
+</blockquote>
+<blockquote>
+<p>SNN代码：<a target="_blank" rel="noopener" href="https://www.shadertoy.com/view/MlyfWd">https://www.shadertoy.com/view/MlyfWd</a></p>
+</blockquote>
+<p>而之前我实现的方法简陋很多，只能说是大道理差不多。先看看实现的效果：</p>
+<iframe src="//player.bilibili.com/player.html?aid=608609320&bvid=BV1R84y1L7yf&cid=987370724&page=1" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true" width=100% height="500"> </iframe>
+
+<blockquote>
+<p>B站外链视频太糊了，麻烦点击本站观看~</p>
+</blockquote>
+<blockquote>
+<p>场景资源来自Unity asset store：<a target="_blank" rel="noopener" href="https://assetstore.unity.com/packages/3d/environments/urban/idyllic-anime-japan-241566">https://assetstore.unity.com/packages/3d/environments/urban/idyllic-anime-japan-241566</a></p>
+</blockquote>
+<p>效果开关对比：<br><img src="https://gaplegth-blog.oss-cn-shanghai.aliyuncs.com/202302010146371.png" width=100%/></p>
+<center>
+<font style: color=gray>关</font>
+</center>
+
+<br>
+
+<img src="https://gaplegth-blog.oss-cn-shanghai.aliyuncs.com/202302010146361.png" width=100%/>
+
+<center>
+<font style: color=gray>开</font>
+</center>
+
+<br>
+
+<img src="https://gaplegth-blog.oss-cn-shanghai.aliyuncs.com/202302010146959.png" width=100%/>
+
+<center>
+<font style: color=gray>关</font>
+</center>
+
+<br>
+
+<img src="https://gaplegth-blog.oss-cn-shanghai.aliyuncs.com/202302010146740.png" width=100%/>
+
+<center>
+<font style: color=gray>开</font>
+</center>
+
+<hr>
+
+<h1 id="画面逆向"><a href="#画面逆向" class="headerlink" title="画面逆向"></a>画面逆向</h1><p>这里先放两张游戏场景的截图：</p>
+<img src="https://gaplegth-blog.oss-cn-shanghai.aliyuncs.com/202301312336535.png" width=100%/>
+
+<img src="https://gaplegth-blog.oss-cn-shanghai.aliyuncs.com/202302010155353.png" width=100%/>
+
+<p>可以看到笔触效果是非常明显的，并且物体的轮廓很干净；当时我们放大看了下，生成的笔触色块周围也是存在类似描边的效果；同时，对于色块的分布程度是会随着相机距离进行变化的，也就说卷积核的大小与深度存在函数关系。</p>
+<p>总结下来，我最后实现的是三个主要部分，彩块化，对全屏法线的描边，对彩块化结果进行描边。</p>
+<hr>
+
+<h1 id="具体实现"><a href="#具体实现" class="headerlink" title="具体实现"></a>具体实现</h1><p>这里是在URP延迟底下RenderFeature实现的，申请了一张额外rt，然后和相机rt互相倒着渲来做的。彩块化部分还有一个可开关的double render操作，即用相同的采样数和step再渲一次，开销比起无脑提高卷积核采样数要稍微小一点。代码结构是用宏来开关同一个片元里头的代码，虽然变体增加了，但是计算的复用程度也变高了，大概也是省了吧。</p>
+<h2 id="彩块化"><a href="#彩块化" class="headerlink" title="彩块化"></a>彩块化</h2><p>当时我并不知道SNN Filter这个牛逼名字，我只知道ps有个彩块化的滤镜，和我要的效果很像，于是去找这玩意的算法。一开始找着的是个暴力算法：</p>
+<pre><code class="GLSL">int a[20] = &#123; 0,0,0,0,0, 0,0,0,0,0, 0,0,0,0,0, 0,0,0,0,0 &#125;;
+
+half4 c[20] = &#123;
+half4(0,0,0,0),half4(0,0,0,0),half4(0,0,0,0),half4(0,0,0,0),half4(0,0,0,0),
+half4(0,0,0,0),half4(0,0,0,0),half4(0,0,0,0),half4(0,0,0,0),half4(0,0,0,0),
+half4(0,0,0,0),half4(0,0,0,0),half4(0,0,0,0),half4(0,0,0,0),half4(0,0,0,0),
+half4(0,0,0,0),half4(0,0,0,0),half4(0,0,0,0),half4(0,0,0,0),half4(0,0,0,0),
+&#125;;
+
+for (int x = -5; x &lt;= 5; x++)
+&#123;
+
+    for (int y = -5; y &lt;= 5; y++)
+    &#123;
+
+        half4 p1 = tex2D(_MainTex, i.uv + 0.001 * half2(x,y));
+        int pi1 = int((p1.r + p1.g + p1.b) / 3.0 * 19);
+        a[pi1] ++;
+        c[pi1] += p1;
+    &#125;
+&#125;
+int index = 0;
+int max = a[0];
+for (int n = 0; n &lt; 20; n++)
+&#123;
+    if (a[n] &gt;= max)
+    &#123;
+        max = a[n];
+        index = n;
+    &#125;
+&#125;
+half4 oc = c[index] / max;	
+oc.a = 1;
+</code></pre>
+<blockquote>
+<p>来源：<a target="_blank" rel="noopener" href="https://yemi.me/2018/03/11/shader-npr-oilpaint/">https://yemi.me/2018/03/11/shader-npr-oilpaint/</a></p>
+</blockquote>
+<p>实在是暴力，电脑还好，放在手机上跑直接就黑屏了，可能是逐像素存一个20长度的数组对手机来说还为时尚早。</p>
+<p>现在用的是算法思路来自这位大佬:</p>
+<blockquote>
+<p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/ezhar/p/12836248.html">https://www.cnblogs.com/ezhar/p/12836248.html</a></p>
+</blockquote>
+<p>我的实现加入了一个随深度变化的step值：</p>
+<pre><code class="GLSL">float curDep = LinearEyeDepth(SampleSceneDepth(i.uv), _ZBufferParams);
+
+float n = float((_LoopTime + 1) * (_LoopTime + 1));
+float3 m0 = 0.0;  
+float3 m1 = 0.0;
+float3 s0 = 0.0;  
+float3 s1 = 0.0;
+float3 c;
+
+float curStep = _DepthMulti == 0 ? _Step : lerp(1, _DepthPow, saturate((_DepthMulti - curDep) / _DepthMulti)) * _Step;
+
+for (int x = -_LoopTime; x &lt;= 0; ++x)
+&#123;
+    for (int y = -_LoopTime; y &lt;= 0; ++y)
+    &#123;
+        c = SAMPLE_TEXTURE2D_X(_ScreenTex, sampler_ScreenTex, i.uv + float2(y, x) * curStep).rgb; 
+        m0 += c; 
+        s0 += c * c;
+    &#125;
+&#125;
+
+for (int v = 0; v &lt;= _LoopTime; ++v)
+&#123;
+    for (int u = 0; u &lt;= _LoopTime; ++u)
+    &#123;
+        c = SAMPLE_TEXTURE2D_X(_ScreenTex, sampler_ScreenTex, i.uv + float2(u, v) * curStep).rgb; 
+        m1 += c;
+        s1 += c * c;
+    &#125;
+&#125;
+
+float4 finalFragColor = 0;
+float min_sigma2 = 1e+2;
+
+m0 /= n;
+s0 = abs(s0 / n - m0 * m0);
+
+float sigma2 = s0.r + s0.g + s0.b;
+if (sigma2 &lt; min_sigma2) 
+&#123;
+    min_sigma2 = sigma2;
+    finalFragColor = float4(m0, 1.0);
+&#125;
+
+m1 /= n;
+s1 = abs(s1 / n - m1 * m1);
+
+sigma2 = s1.r + s1.g + s1.b;
+if (sigma2 &lt; min_sigma2) 
+&#123;
+    finalFragColor = float4(m1, 1.0);
+&#125;
+
+oc = finalFragColor;
+</code></pre>
+<p>当时用着的时候其实是不太懂的，只知道这个效果还行，采样也只有两个象限，直接把采样数干到了一半。现在时代变了，知道这玩意是为啥能这么算了。</p>
+<p>主要是用了通过均值计算方差的公式：Var(X) &#x3D; E(X<sup>2</sup>) - E<sup>2</sup>(X)，分别得到着色点两个象限的rgb值方差和然后比较，比较小的区域内颜色的统一性就越高。至于min_sigma2这个阈值为什么设置为0.01，我其实是不太懂的，或许是方差分析P值的0.01？或者是近似了一个高斯分布？</p>
+<p>查了挺久，只能归结于这个0.01或许是一个统计学上的经验值。不过按我的理解，何必搞这个0.01呢，直接俩方差做一个比较，谁小就用谁：</p>
+<pre><code class="GLSL">m0 /= n;
+s0 = abs(s0 / n - m0 * m0);
+m1 /= n;
+s1 = abs(s1 / n - m1 * m1);
+
+float sigma2 = s0.r + s0.g + s0.b;
+float sigma3 = s1.r + s1.g + s1.b;
+
+oc = sigma2 &lt; sigma3 ? float4(m0, 1.0) : float4(m1, 1.0);
+</code></pre>
+<p>我目前看不出这两种写法有什么差别，结果肉眼看不出区别。代码少了好几行呢，省点是点。</p>
+<hr>
+
+<h2 id="描边"><a href="#描边" class="headerlink" title="描边"></a>描边</h2><p>两次描边用的都是同一个函数，采样了周围四个像素值，没记错的话是shader入门精要的经典传承：</p>
+<pre><code class="GLSL">float CheckSame(float3 center, float cenDep, float3 sample, float samDep, float2 sensitivity) 
+&#123;
+    float2 centerNormal = center.xy;
+    float centerDepth = cenDep;
+    float2 sampleNormal = sample.xy;
+    float sampleDepth = samDep;
+    
+    // difference in normals
+    // do not bother decoding normals - there&#39;s no need here
+    float2 diffNormal = abs(centerNormal - sampleNormal) * sensitivity.x;
+    int isSameNormal = ((diffNormal.x + diffNormal.y) &lt; 0.1) ? 1 : 0;
+    // difference in depth
+    float diffDepth = abs(centerDepth - sampleDepth) * sensitivity.y;
+    // scale the required threshold by the distance
+    int isSameDepth = (diffDepth &lt; (0.1 * centerDepth)) ? 1 : 0;
+    
+    // return:
+    // 1 - if normals and depth are similar enough
+    // 0 - otherwise
+    return isSameNormal * isSameDepth ? 1.0 : 0.0;
+&#125;
+</code></pre>
+<p>这部分的效果还是挺好看的：</p>
+<img src="https://gaplegth-blog.oss-cn-shanghai.aliyuncs.com/202302010052602.png" width=100%>
+
+<center>
+<font style: color=gray>法线描边</font>
+</center>
+
+<br>
+
+<img src="https://gaplegth-blog.oss-cn-shanghai.aliyuncs.com/202302010052161.png" width=100%>
+
+<center>
+<font style: color=gray>颜色描边</font>
+</center>
+
+<br>
+
+<p>由于现在用的是采样完法线图的结果进行描边，高频的细节法线描边结果就让整个画面有点脏了。补救的做法是简单加了一个NDL的判断对描边结果进行遮罩，让向光面的描边颜色更接近像素本来颜色，其实也是治标不治本。</p>
+<p>严格来说，这里的法线描边应该输入全屏模型法线图，但是代价就是要多两个通道放模型法线，是否值得呢，不好说。</p>
+<p>另外，还有些东西是不该进这个彩块化的，像一些本来就很细的东西，电线，栏杆之类的，很大概率会被算法给算出不稳定的颜色，像展示视频中的电线就能看到明显的瑕疵。所以这个Feature实际使用的时候是需要一个逐材质的标记的，属于一个后续要进行的工作。</p>
+<hr>
+
+<p>性能上，视频的效果中，彩块化进行了10+10次的额外采样（其实改巴改巴跟破晓一样用7+7或许效果也是差不多），两次描边分别进行了9次采样。目前测试过在P40Pro是能跑40帧左右的，并且描边对于性能影响非常少，瓶颈在彩块化上。本来抱着逆向的名头去搞的，结果搞出个充满童真的涂鸦效果，只能说是图一乐了……以后如果有时间，再实现一下人家正统的后处理对比效果看看，歇了。</p>
+
+        </div>
+
+    </div>
+
+    
+
+    
+
+    
+
+    
+  <div class="article-copyright hairline">
+    <p>
+      本作品采用  <a rel="license noopener" target="_blank" href="http://creativecommons.org/licenses/by-nc-nd/4.0/">知识共享署名-非商业性使用-禁止演绎 4.0 国际许可协议 (CC BY-NC-ND 4.0)</a> 进行许可。
+    </p>
+  </div>
+  
+
+    
+
+    
+<nav class="article-nav">
+  
+  
+    <a href="/2023/01/29/procedural-terrain/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-caption">precedente</div>
+      <div class="article-nav-title">程序化岩石包边</div>
+    </a>
+  
+</nav>
+
+
+    <section class="share">
+        <div class="share-title">share</div>
+        <a class="share-item" target="_blank"
+            href="https://twitter.com/share?text=风格化场景后处理 - Joon Portfolio&url=https%3A%2F%2Fgaplegth.github.io%2F2023%2F01%2F31%2Fnpr-paint%2F">
+            <ion-icon name="logo-twitter"></ion-icon>
+        </a>
+        <a class="share-item" target="_blank"
+            href="https://www.facebook.com/sharer.php?title=风格化场景后处理 - Joon Portfolio&u=https%3A%2F%2Fgaplegth.github.io%2F2023%2F01%2F31%2Fnpr-paint%2F">
+            <ion-icon name="logo-facebook"></ion-icon>
+        </a>
+        <!-- <a class="share-item" target="_blank"
+            href="https://service.weibo.com/share/share.php?title=风格化场景后处理 - Joon Portfolio&url=https://gaplegth.github.io/2023/01/31/npr-paint/&pic=">
+            <div class="n-icon n-icon-weibo"></div>
+        </a> -->
+    </section>
+
+</article>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<script src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+</div>
+                </section>
+            </section>
+
+            
+            <aside class="sidebar ">
+                
+
+
+<div class="widget" id="widget">
+    
+      
+  <div class="widget-wrap">
+    <div class="widget-inner">
+      <div class="toc post-toc-html"></div>
+    </div>
+  </div>
+
+    
+      
+  <div class="widget-wrap widget-cate">
+    <div class="widget-title"><span>Categories</span></div>
+    <div class="widget-inner">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%B8%B2%E6%9F%93/">渲染</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%A8%8B%E5%BA%8F%E5%8C%96%E5%BB%BA%E6%A8%A1/">程序化建模</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%BE%8E%E6%9C%AF/">美术</a></li></ul>
+    </div>
+  </div>
+
+
+    
+      
+  <div class="widget-wrap widget-tags">
+    <div class="widget-title"><span>Tags</span></div>
+    <div class="widget-inner">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Buildin/" rel="tag">Buildin</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Houdini/" rel="tag">Houdini</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Maya/" rel="tag">Maya</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/NPR/" rel="tag">NPR</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/PBR/" rel="tag">PBR</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/PDG/" rel="tag">PDG</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Substance-Designer/" rel="tag">Substance Designer</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Substance-Painter/" rel="tag">Substance Painter</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/URP/" rel="tag">URP</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Unity/" rel="tag">Unity</a></li></ul>
+    </div>
+  </div>
+
+
+    
+      
+  <div class="widget-wrap widget-recent-posts">
+    <div class="widget-title"><span>Recent Posts</span></div>
+    <div class="widget-inner">
+      <ul>
+        
+          <li>
+            <a href="/2023/01/31/npr-paint/">风格化场景后处理</a>
+          </li>
+        
+          <li>
+            <a href="/2023/01/29/procedural-terrain/">程序化岩石包边</a>
+          </li>
+        
+          <li>
+            <a href="/2022/12/27/npr-water/">移动端风格化SSR水体</a>
+          </li>
+        
+          <li>
+            <a href="/2021/08/25/road-editor/">路网生成器</a>
+          </li>
+        
+          <li>
+            <a href="/2021/03/06/double-aniso-silk/">双层高光丝绸</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+    
+      
+  <div class="widget-wrap widget-archive">
+    <div class="widget-title"><span>Archive</span></div>
+    <div class="widget-inner">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/">2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/">2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/">2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/">2020</a></li></ul>
+    </div>
+  </div>
+
+
+    
+</div>
+
+<div id="backtop"><i class="icon icon-arrow-up"></i></div>
+            </aside>
+            
+        </div>
+    </div>
+
+    <footer class="footer">
+    <div class="footer-wave">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320"><path fill="#3c4859" fill-opacity="1" d="M0,160L60,181.3C120,203,240,245,360,240C480,235,600,181,720,186.7C840,192,960,256,1080,261.3C1200,267,1320,213,1380,186.7L1440,160L1440,320L1380,320C1320,320,1200,320,1080,320C960,320,840,320,720,320C600,320,480,320,360,320C240,320,120,320,60,320L0,320Z"></path></svg>
+    </div>
+
+    <!-- Please do not remove this -->
+    <!-- 开源不易，请勿删除 -->
+    <div class="footer-wrap">
+        <div class="footer-inner"> 
+            Joon Portfolio &copy; 2023<br>
+            Powered By Hexo · Theme By <a href="https://linhong.me/" target="_blank">Aomori</a> · <a href="https://github.com/lh1me/hexo-theme-aomori" target="_blank">Github</a>
+        </div>
+    </div>
+
+</footer>
+
+<script type="module" src="https://unpkg.com/ionicons@6.0.2/dist/ionicons/ionicons.esm.js"></script>
+
+
+
+
+
+
+<script src="/dist/build.js?1654266144177.js"></script>
+
+
+<script src="/dist/custom.js?1654266144177.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+</body>
+
+</html>
